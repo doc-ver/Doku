@@ -1,6 +1,6 @@
 # Dokumentation
 
-github pages auf https://doc-ver.github.io/Doku/ verfügbar
+github pages auf https://doc-ver.github.io/Doku/#/ verfügbar
 
 
 ### Einpflegen neuer Dateien in github pages
