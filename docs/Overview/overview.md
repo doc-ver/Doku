@@ -1,4 +1,4 @@
-﻿# doc-ver Dokumentenverwaltung
+﻿# Overview
 
 *evtl. Beschreibungstext*
 
@@ -28,4 +28,8 @@
  - GraphQL (Datenaustausch)
  - OracleDB
  - Cronjob o.ä. für Dokumentenvolltextsuche (SocketIO?)
+
+## Diagramme
+
+![Verteilung](./resources/doc-ver_Verteilung.svg)
 

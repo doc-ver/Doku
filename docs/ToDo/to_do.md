@@ -1,4 +1,4 @@
-﻿# ToDo
+# ToDo
 ## Grobe Bereiche:
  - [ ] Datenbank
  - [ ] Dokumentenanalyse
