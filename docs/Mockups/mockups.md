@@ -29,4 +29,4 @@
 
 #### Version 2
 
-![Desktop_Auth](./resources/Home_View_Mobile1.png)
+![Desktop_Auth](./resources/Home_View_Mobile2.png)
