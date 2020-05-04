@@ -9,7 +9,7 @@
 
 #### Authentifizierung mit Hilfe von Modal
 
-![Desktop_Auth](./resources/Desktop View - Authentication.png)
+![Desktop_Auth](./resources/Desktop_View_Authentication.png)
 
 
 
@@ -23,10 +23,10 @@
 
 #### Version 1
 
-![Desktop_Auth](./resources/Home View - Mobile 1.png)
+![Desktop_Auth](./resources/Home_View_Mobile1.png)
 
 
 
 #### Version 2
 
-#### ![Desktop_Auth](./resources/Home View - Mobile 2.png)
+![Desktop_Auth](./resources/Home_View_Mobile1.png)
