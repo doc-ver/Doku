@@ -1,14 +1,15 @@
-# Expose
+﻿# Expose
 
 - **Typ:** Projektarbeit im Modul Datenbankanwendungen
 - **Titel:** DocVer
-- **Authoren:**
+- **Autoren:** 
 
 ## 1 Vorstellung des Projekthemas
 
 ### Beschreibung
-- Was soll entwickelt werden?
-- Wie wird das Problem durch die entwickelte Anwendung behoben/vereinfacht
+
+DocVer ist ein System zum Verwalten von Dokumenten, das im Browser läuft und für Mobilgeräte optimiert ist. Es bietet eine Volltextsuche über alle Dokumente, die zuvor analysiert und in durchsuchbare PDFs umgewandelt wurden. Falls die Zeit reicht, soll außerdem eine Schnittstelle für Erweiterungen gegeben werden, die auch tiefere Analysen der Dokumente ermöglichen, wie z.B. ein automatisches Fahrtenbuch aus Daten von Tankquittungen.
+ Durch diese Funktionen soll die Übersicht, über alle gespeicherten Dokumente vereinfacht und dem Nutzer Zeit gespart werden.
 
 ###  Anforderungen
 
@@ -83,7 +84,11 @@
 
 #### Verteilungsdiagramm
 
-![Verteilung](./resources/doc-ver_Verteilung.svg)sdiagramm
+![Verteilungsdiagramm](./resources/Diagramme/doc-ver_Diagramme-Verteilungsdiagramm.svg)
+
+#### Sequenzdiagramm
+
+![Sequenzdiagramm](./resources/Diagramme/doc-ver_Diagramme-Sequenzdiagramm.svg)
 
 ### Code Versionierung / Kollaboratives arbeiten
 
