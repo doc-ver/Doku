@@ -28,6 +28,10 @@ DocVer ist ein System zum Verwalten von Dokumenten, das im Browser läuft und f�
  - automatische Klassifizierung
  - Schnittstelle für Zusatzmodule mit erweiternder Funktionalität (z.B. zum weitergehenden Analysieren bestimmter Dokumente)
 
+#### Randbedingungen:
+
+- Chrome -> File API?
+
 #### Stakeholder
 | Funktion / Relevanz | Name | Kontakt / Verfügbarkeit | Wissen | Interessen / Ziele |
 |---|---|---|---|---|
@@ -58,12 +62,15 @@ DocVer ist ein System zum Verwalten von Dokumenten, das im Browser läuft und f�
 
 ### Datenbank (Oracle / Relational / NoSQL)
 
-- Mongo/Oracle/…
+- Oracle -> SSH Zugang Linux
+  - ggf. Nutzerdaten
   - Referenz zu Dateien im WebDav
   - Volltext ohne Wordposition
 - WebDav (Nextcloud)
   - Dateien
   - Durchsuchbare PDF ~2-5MB
+- Offline DB (Index Browser) -> Evaluation
+  - Cache
 
 ### Frontend (Desktop / Webanwendung / Mobil)
 
@@ -73,8 +80,15 @@ DocVer ist ein System zum Verwalten von Dokumenten, das im Browser läuft und f�
 
 ### Backend (Sprache)
 
-- Apollo Server
-- GraphQL (Datenaustausch)
+- NodeJS Server
+  - Apollo - GraphQL (Datenaustausch)
+  - FirebaseAdmin - Usercreation / Verifizierung
+- OCR Server
+- Arbeitspaket -> API Input Keywords / Response Vorkommen in Datei
+
+### Environment
+
+- Docker
 
 ### Kommunikation Server / Client
 
@@ -109,8 +123,8 @@ DocVer ist ein System zum Verwalten von Dokumenten, das im Browser läuft und f�
 | 20.04.20 - 26.04.20 | Kick Off |
 | 27.04.20 - 03.05.20 | Recherche + Machbarkeit und Prototyp Architektur |
 | 04.05.20 - 10.05.20 | Überarbeitete Prototyp Architektur und Mockup Ideen |
-| 11.05.20 - 17.05.20 | Mockup und OCR fertig |
-| 18.05.20 - 24.05.20 |  |
+| 11.05.20 - 17.05.20 | Klickdummy für Webanwendung und OCR fertig, Datenbankarchitektur definiert |
+| 18.05.20 - 24.05.20 | NodeJS Server mit Firebase und GraphQL aufgesetzt, Finale Version Architektur |
 | 25.05.20 - 31.05.20 |  |
 | 01.06.20 - 07.06.20 |  |
 | 08.06.20 - 14.06.20 |  |
