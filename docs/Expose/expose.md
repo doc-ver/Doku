@@ -1,4 +1,5 @@
-﻿# Expose
+﻿
+# Expose
 
 - **Typ:** Projektarbeit im Modul Datenbankanwendungen
 - **Titel:** DocVer
@@ -96,13 +97,13 @@ DocVer ist ein System zum Verwalten von Dokumenten, das im Browser läuft und f�
 - Datei ↔ Client ↔ Webdav ↔ OCR API ↔ WebDav
 - OCR API ↔ [Volltext] ↔ DB
 
-#### Verteilungsdiagramm
+### Diagramme
 
 ![Verteilungsdiagramm](./resources/Diagramme/doc-ver_Diagramme-Verteilungsdiagramm.svg)
 
-#### Sequenzdiagramm
-
 ![Sequenzdiagramm](./resources/Diagramme/doc-ver_Diagramme-Sequenzdiagramm.svg)
+
+![ER-Diagramm](./resources/Diagramme/doc-ver_Diagramme-ER-Diagramm.svg)
 
 ### Code Versionierung / Kollaboratives arbeiten
 
