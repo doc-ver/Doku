@@ -1,4 +1,4 @@
-﻿
+
 # Expose
 
 - **Typ:** Projektarbeit im Modul Datenbankanwendungen
@@ -10,7 +10,7 @@
 ### Beschreibung
 
 DocVer ist ein System zum Verwalten von Dokumenten, das im Browser läuft und für Mobilgeräte optimiert ist. Es bietet eine Volltextsuche über alle Dokumente, die zuvor analysiert und in durchsuchbare PDFs umgewandelt wurden. Falls die Zeit reicht, soll außerdem eine Schnittstelle für Erweiterungen gegeben werden, die auch tiefere Analysen der Dokumente ermöglichen, wie z.B. ein automatisches Fahrtenbuch aus Daten von Tankquittungen.
- Durch diese Funktionen soll die Übersicht, über alle gespeicherten Dokumente vereinfacht und dem Nutzer Zeit gespart werden.
+Durch diese Funktionen soll die Übersicht, über alle gespeicherten Dokumente vereinfacht und dem Nutzer Zeit gespart werden.
 
 ###  Anforderungen
 
@@ -36,16 +36,24 @@ DocVer ist ein System zum Verwalten von Dokumenten, das im Browser läuft und f�
 #### Stakeholder
 | Funktion / Relevanz | Name | Kontakt / Verfügbarkeit | Wissen | Interessen / Ziele |
 |---|---|---|---|---|
-| xxx | xxx | xxx | xxx | xxx | xxx |
+| Interessent (Möchte in die Smart City einziehen) | Martin Meyer | Tel. 2837462, von 16-20 Uhr telefonisch erreichbar | Kennt das System in anderen Städten, ist interessiert am System der Smart City | Übersichtliche Darstellung aller angebotenen Inhalte, um sich zurecht zu finden |
 
 #### User Stories
 | Funktion | Rolle | In meiner Rolle möchte ich | so dass | Akzeptanz | Priorität |
 | --| --| -- | -- | -- | -- |
-| xxx | xxx | xxx | xxx | xxx | xxx |
+| [Registrierung](#registrierung) | Interessent | mich beim Bürgerbüro registrieren | für mich ein Konto erstellt wird | Registrierung möglich | Hoch      |
+
+
+
+### Graphische Benutzerschnittstelle
+
+![Mockup](./resources/Mockup.png)
 
 ## 2 Geplante Projektarbeit
 
 ### Rollenverteilung / Zuständigkeiten
+
+- ?
 
 ### Kommunikationskanäle
 - Discord
@@ -97,14 +105,6 @@ DocVer ist ein System zum Verwalten von Dokumenten, das im Browser läuft und f�
 - Datei ↔ Client ↔ Webdav ↔ OCR API ↔ WebDav
 - OCR API ↔ [Volltext] ↔ DB
 
-### Diagramme
-
-![Verteilungsdiagramm](./resources/Diagramme/doc-ver_Diagramme-Verteilungsdiagramm.svg)
-
-![Sequenzdiagramm](./resources/Diagramme/doc-ver_Diagramme-Sequenzdiagramm.svg)
-
-![ER-Diagramm](./resources/Diagramme/doc-ver_Diagramme-ER-Diagramm.svg)
-
 ### Code Versionierung / Kollaboratives arbeiten
 
 - Git
@@ -124,8 +124,8 @@ DocVer ist ein System zum Verwalten von Dokumenten, das im Browser läuft und f�
 | 20.04.20 - 26.04.20 | Kick Off |
 | 27.04.20 - 03.05.20 | Recherche + Machbarkeit und Prototyp Architektur |
 | 04.05.20 - 10.05.20 | Überarbeitete Prototyp Architektur und Mockup Ideen |
-| 11.05.20 - 17.05.20 | Klickdummy für Webanwendung und OCR fertig, Datenbankarchitektur definiert |
-| 18.05.20 - 24.05.20 | NodeJS Server mit Firebase und GraphQL aufgesetzt, Finale Version Architektur |
+| 11.05.20 - 17.05.20 | Klickdummy für Webanwendung und OCR fertig, Datenbankarchitektur definiert, NodeJS Server mit Firebase aufgesetzt |
+| 18.05.20 - 24.05.20 | Evaluation Oracle DB mit und ohne graphQL, Festlegen der finalen Version der Architektur |
 | 25.05.20 - 31.05.20 |  |
 | 01.06.20 - 07.06.20 |  |
 | 08.06.20 - 14.06.20 |  |
@@ -136,6 +136,8 @@ DocVer ist ein System zum Verwalten von Dokumenten, das im Browser läuft und f�
 | 13.07.20 - 19.07.20 |  |
 
 ## A Gliederungsentwurf
+
+Gliederungsentwurf für Dokumentation der Endabgabe
 
  1. Einleitung
  2. --

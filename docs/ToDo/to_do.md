@@ -3,12 +3,6 @@
 
 #### Backend:
 
-##### Serverinstallation
-
-- Nextcloud
-- Oracle
-- Deployment in Docker
-
 ##### OCR
 
 - Schnittstelle zu WebDAV für eingehende Bilder und ausgehende PDFs einrichten (Ken)
@@ -17,21 +11,26 @@
 
 ##### NodeJS 
 
-- Firebase aufsetzen (Pia)
-- GraphQL aufsetzen (Pia)
+- Evaluation Oracle mit oder ohne GraphQL (Ken)
+- Evaluation / Erarbeitung graphQL von Node zu Client (statt REST) (Pia)
 
 #### Frontend:
 
-- Klickdummy erstellen für Website (Pia)
+- Anbindung über graphQL einrichten  (Pia)
 
 #### Datenbank:
 
-- OracleDB einrichten (Andre)
-- Pläne für Datenbankstruktur erstellen (Andre)
+- OracleDB Tabellen einrichten (Andre)
+  - SQL Skript mit Tablespace (Andre)
 
 #### Dokumentation:
 
 - Diagramme aktualisieren (Andre)
+- Mockup in Expose überarebeiten (Pia)
+- Meilensteine und Planungstabelle ausfüllen (alle)
+- Expose teilweise ausformulieren (Andre)
+- User Stories und Stakeholder definieren (Andre)
+- Rollenverteilungen / Zuständigkeiten definieren (alle)
 
 
 
