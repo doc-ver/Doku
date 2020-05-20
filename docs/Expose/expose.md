@@ -10,7 +10,7 @@
 ### Beschreibung
 
 DocVer ist ein System zum Verwalten von Dokumenten, das im Browser läuft und für Mobilgeräte optimiert ist. Es bietet eine Volltextsuche über alle Dokumente, die zuvor analysiert und in durchsuchbare PDFs umgewandelt wurden. Falls die Zeit reicht, soll außerdem eine Schnittstelle für Erweiterungen gegeben werden, die auch tiefere Analysen der Dokumente ermöglichen, wie z.B. ein automatisches Fahrtenbuch aus Daten von Tankquittungen.
- Durch diese Funktionen soll die Übersicht, über alle gespeicherten Dokumente vereinfacht und dem Nutzer Zeit gespart werden.
+Durch diese Funktionen soll die Übersicht, über alle gespeicherten Dokumente vereinfacht und dem Nutzer Zeit gespart werden.
 
 ###  Anforderungen
 
@@ -36,16 +36,30 @@ DocVer ist ein System zum Verwalten von Dokumenten, das im Browser läuft und f�
 #### Stakeholder
 | Funktion / Relevanz | Name | Kontakt / Verfügbarkeit | Wissen | Interessen / Ziele |
 |---|---|---|---|---|
-| xxx | xxx | xxx | xxx | xxx | xxx |
+| Interessent (Möchte DocVer nutzen) | Martin Meyer | Tel. 2837462, von 16-20 Uhr telefonisch erreichbar | Manuelle Dokumentenverwaltung ist ihm zu aufwendig | Möchte Zugang zu dem Service bekommen |
+| Nutzer | Franz Müller | Tel. 2871239, von 12-18 Uhr telefonisch erreichbar | Anmeldedaten, Welche Dokumente sollen verwaltet werden | Möchte seine Dokumente verwalten |
 
 #### User Stories
 | Funktion | Rolle | In meiner Rolle möchte ich | so dass | Akzeptanz | Priorität |
 | --| --| -- | -- | -- | -- |
-| xxx | xxx | xxx | xxx | xxx | xxx |
+| Registrierung | Interessent | mich bei DocVer registrieren | für mich ein Konto erstellt wird | Registrierung möglich | Hoch |
+| Einloggen | Nutzer | mich bei DocVer einloggen | ich den Service benutzen kann | Einloggen möglich | Hoch |
+| Dokument hochladen | Nutzer | Dokumente hochladen | der DocVer diese verwalten kann | Hochladen möglich | Hoch |
+| Dokumente durchsuchen | Nutzer | meine Dokumente durchsuchen | ich das richtige Dokument finde | Dokument gefunden | Hoch |
+| Dokumentinhalt ansehen | Nutzer | den Text eines Dokuments ansehen | ich einen Überblick über den Inhalt bekomme | Textinhalt angezeigt | Hoch |
+| Dokument ansehen | Nutzer | ein ausgesuchtes Dokument ansehen | ich mir Original anschauen kann | Dokument angezeigt | Mittel |
+
+
+
+### Graphische Benutzerschnittstelle
+
+![Mockup](./resources/Mockup.png)
 
 ## 2 Geplante Projektarbeit
 
 ### Rollenverteilung / Zuständigkeiten
+
+- ?
 
 ### Kommunikationskanäle
 - Discord
@@ -97,14 +111,6 @@ DocVer ist ein System zum Verwalten von Dokumenten, das im Browser läuft und f�
 - Datei ↔ Client ↔ Webdav ↔ OCR API ↔ WebDav
 - OCR API ↔ [Volltext] ↔ DB
 
-### Diagramme
-
-![Verteilungsdiagramm](./resources/Diagramme/doc-ver_Diagramme-Verteilungsdiagramm.svg)
-
-![Sequenzdiagramm](./resources/Diagramme/doc-ver_Diagramme-Sequenzdiagramm.svg)
-
-![ER-Diagramm](./resources/Diagramme/doc-ver_Diagramme-ER-Diagramm.svg)
-
 ### Code Versionierung / Kollaboratives arbeiten
 
 - Git
@@ -124,8 +130,8 @@ DocVer ist ein System zum Verwalten von Dokumenten, das im Browser läuft und f�
 | 20.04.20 - 26.04.20 | Kick Off |
 | 27.04.20 - 03.05.20 | Recherche + Machbarkeit und Prototyp Architektur |
 | 04.05.20 - 10.05.20 | Überarbeitete Prototyp Architektur und Mockup Ideen |
-| 11.05.20 - 17.05.20 | Klickdummy für Webanwendung und OCR fertig, Datenbankarchitektur definiert |
-| 18.05.20 - 24.05.20 | NodeJS Server mit Firebase und GraphQL aufgesetzt, Finale Version Architektur |
+| 11.05.20 - 17.05.20 | Klickdummy für Webanwendung und OCR fertig, Datenbankarchitektur definiert, NodeJS Server mit Firebase aufgesetzt |
+| 18.05.20 - 24.05.20 | Evaluation Oracle DB mit und ohne graphQL, Festlegen der finalen Version der Architektur |
 | 25.05.20 - 31.05.20 |  |
 | 01.06.20 - 07.06.20 |  |
 | 08.06.20 - 14.06.20 |  |
@@ -136,6 +142,8 @@ DocVer ist ein System zum Verwalten von Dokumenten, das im Browser läuft und f�
 | 13.07.20 - 19.07.20 |  |
 
 ## A Gliederungsentwurf
+
+Gliederungsentwurf für Dokumentation der Endabgabe
 
  1. Einleitung
  2. --
