@@ -32,16 +32,13 @@ Durch diese Funktionen soll die Übersicht, über alle gespeicherten Dokumente v
 #### Randbedingungen:
 
 - Chrome -> File API?
+- 
 
 #### Stakeholder
 | Funktion / Relevanz | Name | Kontakt / Verfügbarkeit | Wissen | Interessen / Ziele |
 |---|---|---|---|---|
-<<<<<<< HEAD
-| Interessent (Möchte DocVer nutzen) | Martin Meyer | Tel. 2837462, von 16-20 Uhr telefonisch erreichbar | Manuelle Dokumentenverwaltung ist ihm zu aufwendig | Möchte Zugang zu dem Service bekommen |
+| Interessent | Martin Meyer | Tel. 2837462, von 16-20 Uhr telefonisch erreichbar | Manuelle Dokumentenverwaltung ist ihm zu aufwendig | Möchte Zugang zu dem Service bekommen |
 | Nutzer | Franz Müller | Tel. 2871239, von 12-18 Uhr telefonisch erreichbar | Anmeldedaten, Welche Dokumente sollen verwaltet werden | Möchte seine Dokumente verwalten |
-=======
-| Interessent (Möchte in die Smart City einziehen) | Martin Meyer | Tel. 2837462, von 16-20 Uhr telefonisch erreichbar | Kennt das System in anderen Städten, ist interessiert am System der Smart City | Übersichtliche Darstellung aller angebotenen Inhalte, um sich zurecht zu finden |
->>>>>>> f143260b37051c92e59acc2737e91ae5078273a3
 
 #### User Stories
 | Funktion | Rolle | In meiner Rolle möchte ich | so dass | Akzeptanz | Priorität |
@@ -50,7 +47,7 @@ Durch diese Funktionen soll die Übersicht, über alle gespeicherten Dokumente v
 | Einloggen | Nutzer | mich bei DocVer einloggen | ich den Service benutzen kann | Einloggen möglich | Hoch |
 | Dokument hochladen | Nutzer | Dokumente hochladen | der DocVer diese verwalten kann | Hochladen möglich | Hoch |
 | Dokumente durchsuchen | Nutzer | meine Dokumente durchsuchen | ich das richtige Dokument finde | Dokument gefunden | Hoch |
-| Dokumentinhalt ansehen | Nutzer | den Text eines Dokuments ansehen | ich einen Überblick über den Inhalt bekomme | Textinhalt angezeigt | Hoch |
+| Dokumenteninhalt ansehen | Nutzer | den Text eines Dokuments ansehen | ich einen Überblick über den Inhalt bekomme | Textinhalt angezeigt | Hoch |
 | Dokument ansehen | Nutzer | ein ausgesuchtes Dokument ansehen | ich mir Original anschauen kann | Dokument angezeigt | Mittel |
 
 
