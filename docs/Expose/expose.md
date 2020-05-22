@@ -1,11 +1,11 @@
-
+﻿
 # Expose
 
 - **Typ:** Projektarbeit im Modul Datenbankanwendungen
 
 - **Titel:** DocVer
 
-- **Autoren:** Ken Madlehn, Andre Grellmann, Pia Schreiner
+- **Autoren:** Ken Madlehn, André Grellmann, Pia Schreiner
 
   
 
@@ -20,6 +20,8 @@ Durch diese Funktionen soll die Übersicht, über alle gespeicherten Dokumente v
 
 #### Grundanforderungen:
 
+Das System soll digitalisierte Dokumente, wie Fotos, Scans, etc., verwalten können. Dafür sollen diese hochgeladen werden und danach automatisch an die richtige Stelle gespeichert, mit Optische Zeichenerkennung (OCR) analysiert und in durchsuchbare PDFs umgewandelt werden. Außerdem sollen sie klassifiziert werden (zuerst manuell, wenn genug Zeit über ist evtl. automatisch). Nachdem die Dokumente in das System aufgenommen wurden, soll eine Volltextsuche über diese möglich sein und eine Übersicht über sie gegeben werden. Die Anwendung soll mobil (via Smartphone oder Tablet) und lokal (am PC o.ä.) benutzbar sein.
+
  - digitalisierte Dokumente (Foto, Scan etc.) verwalten
  - mit DB synchronisieren
  - klassifizieren
@@ -30,10 +32,14 @@ Durch diese Funktionen soll die Übersicht, über alle gespeicherten Dokumente v
 
 #### Optionale Anforderungen
 
+Falls genug Zeit gegen Ende übrig bleibt, wären eine automatische Klassifizierung und eine Schnittstelle für Zusatzmodule mit erweiternder Funktionalität (z.B. zum weitergehenden Analysieren bestimmter Dokumente) denkbar.
+
  - automatische Klassifizierung
  - Schnittstelle für Zusatzmodule mit erweiternder Funktionalität (z.B. zum weitergehenden Analysieren bestimmter Dokumente)
 
 #### Randbedingungen:
+
+Zum Benutzen von DocVer wird ein kompatibles Gerät mit Webbrowser und Internetverbindung benötigt. Zusätzlich kann es sein, dass der Google Chrome Browser, aufgrund der File API, benötigt wird.
 
 - Chrome -> File API?
 
@@ -49,10 +55,12 @@ Durch diese Funktionen soll die Übersicht, über alle gespeicherten Dokumente v
 | Registrierung | Interessent | mich bei DocVer registrieren | für mich ein Konto erstellt wird | Registrierung möglich | Hoch |
 | Einloggen | Nutzer | mich bei DocVer einloggen | ich den Service benutzen kann | Einloggen möglich | Hoch |
 | Dokument hochladen | Nutzer | Dokumente hochladen | der DocVer diese verwalten kann | Hochladen möglich | Hoch |
+| Dokument klassifizieren | Nutzer | Dokumente klassifizieren | ich diese später besser einordnen kann | Dokument klassifiziert | Mittel |
 | Dokumente durchsuchen | Nutzer | meine Dokumente durchsuchen | ich das richtige Dokument finde | Dokument gefunden | Hoch |
 | Dokumenteninhalt ansehen | Nutzer | den Text eines Dokuments ansehen | ich einen Überblick über den Inhalt bekomme | Textinhalt angezeigt | Hoch |
 | Dokument ansehen | Nutzer | ein ausgesuchtes Dokument ansehen | ich mir Original anschauen kann | Dokument angezeigt | Mittel |
-
+| Module | Nutzer | Zusatzmodule hinzufügen und benutzen | ich die Daten des Dokuments weiter verarbeiten kann | Modul benutzbar | Klein (Optional) |
+| Automatische Klassifizierung | Nutzer | Dokumente klassifiziert bekommen | ich dies nicht selber machen muss | Dokument richtig klassifieziert | Klein (Optional) |
 
 
 ### Graphische Benutzerschnittstelle
@@ -66,6 +74,9 @@ Durch diese Funktionen soll die Übersicht, über alle gespeicherten Dokumente v
 - Noch aufschreiben
 
 ### Kommunikationskanäle
+
+Für Besprechungen benutzen wir Discord und für kurze Absprachen oder gegenseitigen Informationsaustausch Whatsapp.
+
 - Discord
 - Whatsapp
 
@@ -81,6 +92,8 @@ Durch diese Funktionen soll die Übersicht, über alle gespeicherten Dokumente v
 
 ### Datenbank (Oracle / Relational / NoSQL)
 
+Zur Datenverwaltung benutzen wir eine Kombination aus einer relationellen Datenbank und einem Webspeicher. Für den Webspeicher nutzen wir Nextcloud, um darin die Rohdateien und die generierten durchsuchbaren PDFs zu speichern. Als Datenbank benutzen wir eine Oracle Datenbank und speichern dort die Referenzen zu Roh- und PDF-Dateien, sowie alle darin vorkommende Worte, zugewiesene Tags und Benutzerzugehörigkeit. Um eine (eingeschränkte) Offlinefähigkeit bieten zu können, sollen Teile der Datenbank (z.B. Übersichtsergebnisse von vorherigen Suchen) auf dem Endgerät per File API oder in der Offline DB gecasht werden.
+
 - Oracle -> SSH Zugang Linux
   - ggf. Nutzerdaten
   - Referenz zu Dateien im WebDav
@@ -93,11 +106,15 @@ Durch diese Funktionen soll die Übersicht, über alle gespeicherten Dokumente v
 
 ### Frontend (Desktop / Webanwendung / Mobil)
 
+Das Frontend läuft auf den oben genannten Endgeräten im Browser als Progressive Web App (PWA) mit Responsive Web Design. Als Web-Framework benutzen wir dafür Angular.
+
 - Angular
 - Progressive Web App (PWA)
 - Responsive Web Design
 
 ### Backend (Sprache)
+
+
 
 - NodeJS Server
   - Apollo - GraphQL (Datenaustausch)
@@ -106,6 +123,8 @@ Durch diese Funktionen soll die Übersicht, über alle gespeicherten Dokumente v
 - Arbeitspaket -> API Input Keywords / Response Vorkommen in Datei
 
 ### Environment
+
+Unsere Anwendung soll über Docker deployed werden können.
 
 - Docker
 
@@ -116,6 +135,8 @@ Durch diese Funktionen soll die Übersicht, über alle gespeicherten Dokumente v
 - OCR API ↔ [Volltext] ↔ DB
 
 ### Code Versionierung / Kollaboratives arbeiten
+
+Um unseren Code zu versionieren und weitere Dateien (z.B. zur Dokumentation) untereinander auszutauschen, benutzen wir unsere dafür angelegte GitHub-Organisation. 
 
 - Git
 
