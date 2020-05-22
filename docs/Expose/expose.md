@@ -2,8 +2,12 @@
 # Expose
 
 - **Typ:** Projektarbeit im Modul Datenbankanwendungen
+
 - **Titel:** DocVer
-- **Autoren:** 
+
+- **Autoren:** Ken Madlehn, Andre Grellmann, Pia Schreiner
+
+  
 
 ## 1 Vorstellung des Projekthemas
 
@@ -32,7 +36,6 @@ Durch diese Funktionen soll die Übersicht, über alle gespeicherten Dokumente v
 #### Randbedingungen:
 
 - Chrome -> File API?
-- 
 
 #### Stakeholder
 | Funktion / Relevanz | Name | Kontakt / Verfügbarkeit | Wissen | Interessen / Ziele |
@@ -60,7 +63,7 @@ Durch diese Funktionen soll die Übersicht, über alle gespeicherten Dokumente v
 
 ### Rollenverteilung / Zuständigkeiten
 
-- ?
+- Noch aufschreiben
 
 ### Kommunikationskanäle
 - Discord
