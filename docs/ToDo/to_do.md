@@ -11,28 +11,26 @@
 
 ##### NodeJS 
 
-- Evaluation Oracle mit oder ohne GraphQL (Ken)
-- Evaluation / Erarbeitung graphQL von Node zu Client (statt REST) (Pia)
+- Aufräumen (Pia)
+- Datenbankanbindung über Sequelize vorbereiten (Pia)
 
 #### Frontend:
 
-- Anbindung über graphQL einrichten  (Pia)
+- Aufräumen  (Pia)
 
 #### Datenbank:
 
-- OracleDB Tabellen einrichten (Andre)
-  - SQL Skript mit Tablespace (Andre)
+- OracleDB Tabellen einrichten mit Sequelize (Andre)
+- Definition erster Stored Procedures (Ken)
+- Skript für die DB exportieren (Pia)
 
 #### Dokumentation:
 
 - Diagramme aktualisieren (Andre)
-- Mockup in Expose überarebeiten (Pia)
-- Meilensteine und Planungstabelle ausfüllen (alle)
-- Expose teilweise ausformulieren (Andre)
-- User Stories und Stakeholder definieren (Andre)
-- Rollenverteilungen / Zuständigkeiten definieren (alle)
 
+- Expose fertigstellen (Andre)
 
+  
 
 ## Grobe Bereiche:
 
