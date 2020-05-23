@@ -55,10 +55,13 @@ Zum Benutzen von DocVer wird ein kompatibles Gerät mit Webbrowser und Internetv
 | Registrierung | Interessent | mich bei DocVer registrieren | für mich ein Konto erstellt wird | Registrierung möglich | Hoch |
 | Einloggen | Nutzer | mich bei DocVer einloggen | ich den Service benutzen kann | Einloggen möglich | Hoch |
 | Dokument hochladen | Nutzer | Dokumente hochladen | der DocVer diese verwalten kann | Hochladen möglich | Hoch |
+| Kategorie anlegen | Nutzer | Kategorie anlegen | ich später Dokumente damit klassifizieren kann | Kategorie angelegt | Mittel |
+| Kategorie löschen | Nutzer | Kategorie löschen | Dokumente nicht mehr mit dieser Kategorie klassifiziert werden können | Kategorie gelöscht | Mittel |
 | Dokument klassifizieren | Nutzer | Dokumente klassifizieren | ich diese später besser einordnen kann | Dokument klassifiziert | Mittel |
 | Dokumente durchsuchen | Nutzer | meine Dokumente durchsuchen | ich das richtige Dokument finde | Dokument gefunden | Hoch |
 | Dokumenteninhalt ansehen | Nutzer | den Text eines Dokuments ansehen | ich einen Überblick über den Inhalt bekomme | Textinhalt angezeigt | Hoch |
 | Dokument ansehen | Nutzer | ein ausgesuchtes Dokument ansehen | ich mir Original anschauen kann | Dokument angezeigt | Mittel |
+| Dokument löschen | Nutzer | ein Dokument löschen | das Dokument aus dem System entfernt wird | Dokument gelöscht | Hoch |
 | Module | Nutzer | Zusatzmodule hinzufügen und benutzen | ich die Daten des Dokuments weiter verarbeiten kann | Modul benutzbar | Klein (Optional) |
 | Automatische Klassifizierung | Nutzer | Dokumente klassifiziert bekommen | ich dies nicht selber machen muss | Dokument richtig klassifieziert | Klein (Optional) |
 
@@ -71,7 +74,9 @@ Zum Benutzen von DocVer wird ein kompatibles Gerät mit Webbrowser und Internetv
 
 ### Rollenverteilung / Zuständigkeiten
 
-- Noch aufschreiben
+- André: Dokumentation, REST-Server (Datenbank)
+- Pia: Frontend, REST-Server (Frontend --> Backend)
+- Ken: OCR, Infrastruktur-Services, Stored Procedures, Volltextsuche
 
 ### Kommunikationskanäle
 
@@ -117,9 +122,8 @@ Das Frontend läuft auf den oben genannten Endgeräten im Browser als Progressiv
 
 
 - NodeJS Server
-  - Apollo - GraphQL (Datenaustausch)
   - FirebaseAdmin - Usercreation / Verifizierung
-- OCR Server
+- OCR Server (Tesseract mit OpenCV, Pyton)
 - Arbeitspaket -> API Input Keywords / Response Vorkommen in Datei
 
 ### Environment
@@ -127,6 +131,9 @@ Das Frontend läuft auf den oben genannten Endgeräten im Browser als Progressiv
 Unsere Anwendung soll über Docker deployed werden können.
 
 - Docker
+- Nextcloud
+- Oracle Datenbank
+- OCR Server (Tesseract mit OpenCV, Pyton)
 
 ### Kommunikation Server / Client
 
@@ -157,26 +164,23 @@ Um unseren Code zu versionieren und weitere Dateien (z.B. zur Dokumentation) unt
 | 04.05.20 - 10.05.20 | Überarbeitete Prototyp Architektur und Mockup Ideen |
 | 11.05.20 - 17.05.20 | Klickdummy für Webanwendung und OCR fertig, Datenbankarchitektur definiert, NodeJS Server mit Firebase aufgesetzt |
 | 18.05.20 - 24.05.20 | Evaluation Oracle DB mit und ohne graphQL, Festlegen der finalen Version der Architektur |
-| 25.05.20 - 31.05.20 |  |
-| 01.06.20 - 07.06.20 |  |
-| 08.06.20 - 14.06.20 |  |
-| 15.06.20 - 21.06.20 |  |
-| 22.06.20 - 28.06.20 |  |
-| 29.06.20 - 05.07.20 |  |
-| 06.07.20 - 12.07.20 |  |
-| 13.07.20 - 19.07.20 |  |
+| 25.05.20 - 31.05.20 | Mockups & Frontend vervollständigen, einarbeiten Sequelize, Expose ausformulieren |
+| 01.06.20 - 07.06.20 | Benötigte REST-Funktionen vorbereiten, Datenbankanbindung |
+| 08.06.20 - 14.06.20 | Userfunktionalität fertig |
+| 15.06.20 - 21.06.20 | Volltextsuche fertig, Settings-Funktionalität fertig |
+| 22.06.20 - 28.06.20 | Dokumenten-Funktionalität fertig |
+| 29.06.20 - 05.07.20 | Tests durchführen, Dokumentation abgeschlossen |
 
 ## A Gliederungsentwurf
 
 Gliederungsentwurf für Dokumentation der Endabgabe
 
  1. Einleitung
- 2. --
- 3. --
- 4. --
- 5. Evaluierung
- 6. Fazit
- 7. Ausblick
+ 2. Planung / Diagramme
+ 3. Features
+ 4. Genutzte Technologien
+ 5. Fazit
+ 6. Ausblick
 
 ## B Vorläufiges Literaturverzeichnis
 Überblick über die bisher ermittelten Literaturquellen (Alphabetisch nach den Namen der Autoren sortiert)
