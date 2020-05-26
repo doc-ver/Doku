@@ -80,12 +80,16 @@ Zum Benutzen von DocVer wird ein kompatibles Gerät mit Webbrowser und Internetv
 
 ### Kommunikationskanäle
 
-Für Besprechungen benutzen wir Discord und für kurze Absprachen oder gegenseitigen Informationsaustausch Whatsapp.
+Für Besprechungen benutzen wir Discord und für kurze Absprachen oder zwischenzeitlichen Informationsaustausch Whatsapp.
 
 - Discord
 - Whatsapp
 
 ## 3 Marktanalyse/Stand der Technik
+
+Vergleichbare Produkte auf dem Markt sind z.B. [Abbyy FineReader](https://www.abbyy.com/de-de/finereader/) und [bitfarm-Archiv](https://www.bitfarm-archiv.de/dokumentenmanagement/). Beide Dokumet Management Systeme (DMS) bieten viele Funktionen um die OCR-Funktion herum an, wie PDF-Erstellung / -Bearbeitung /-Signierung etc.. Über solche Funktionen könnte man in den Modulen nachdenken (falls die Modul-Schnittstelle implementiert werden würde).
+Abbyy ist ein kommerzielles System, sodass nicht viel über die Implementierung bekannt ist. Laut eigenen Angaben benutzen sie für die OCR ein KI-System. bitfarm-Archiv ist Open-Source und bietet eine kostenlose Version an. Für die Datenverwaltung wird MySQL benutzt, was für unser System auch eine denkbare Alternative ist.
+Beide Systeme empfehlen für die Serverseite einen Windows-Server (und bitfarm für sehr kleine Anwendungen auch normales Windows) und bieten einen Windows-Client. bitfarm-Archiv bietet zudem noch einen Web-Viewer und iOS-, sowie Android-Apps an. Unser System hebt sich also dadurch ab, dass es sehr viel portabler ist, da für die Serverseite lediglich Docker verfügbar sein muss und die Clientseite durch die Webanwendung alle Endgeräte, bis auf manche Sonderfälle, abdeckt, die einen Browser haben. 
 
 - Gibt es schon vergleichbare Produkte in der Forschung oder am Markt?
 	- Abbyy (OCR)
@@ -119,7 +123,7 @@ Das Frontend läuft auf den oben genannten Endgeräten im Browser als Progressiv
 
 ### Backend (Sprache)
 
-
+Für den REST-Server nutzen wir NodeJS mit JavaScript und dem Firebase Admin SDK, da wir Firebase für die User- bzw. Zugriffskontrolle nutzen. Der OCR Server ist mit Python implementiert und nutzt Tesseract zum Erkennen der Texte und OpenCV zum vorherigen Bearbeiten der zu analysierenden Bilddatei.
 
 - NodeJS Server
   - FirebaseAdmin - Usercreation / Verifizierung
@@ -128,7 +132,7 @@ Das Frontend läuft auf den oben genannten Endgeräten im Browser als Progressiv
 
 ### Environment
 
-Unsere Anwendung soll über Docker deployed werden können.
+Zum Speichern der hochgeladenen Bilddateien und generierten PDFs nutzen wir einen Nextcloud Server. Alle weiteren Daten werden in einer Oracle Datenbank gemanaged. Das Ganze wird mit Docker deployed werden können. Auch der OCR Server ist ein einzelner Container.
 
 - Docker
 - Nextcloud
@@ -136,6 +140,10 @@ Unsere Anwendung soll über Docker deployed werden können.
 - OCR Server (Tesseract mit OpenCV, Pyton)
 
 ### Kommunikation Server / Client
+
+Der Client fragt Daten über den REST-Server an. Dieser besorgt das Benötigte von der Datenbank oder der Nextcloud und schickt danach die Daten als JSON und die Dateien in dem gespeicherten Format zurück. Der REST-Server nutzt die ORM-Library Sequelize, um die Daten mit der Datenbank auszutauschen.
+
+![Sequenzdiagramm](./Overview/resources/Diagramme/doc-ver_Diagramme-Sequenzdiagramm.svg)
 
 - DB ↔ GraphQL ↔ Angular ↔ Client
 - Datei ↔ Client ↔ Webdav ↔ OCR API ↔ WebDav
@@ -185,5 +193,8 @@ Gliederungsentwurf für Dokumentation der Endabgabe
 ## B Vorläufiges Literaturverzeichnis
 Überblick über die bisher ermittelten Literaturquellen (Alphabetisch nach den Namen der Autoren sortiert)
 
+--
+
 ### Literatur
-[ABC] Beschreibung
+
+--
