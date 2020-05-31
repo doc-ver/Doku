@@ -1,4 +1,4 @@
-﻿
+
 # Expose
 
 - **Typ:** Projektarbeit im Modul Datenbankanwendungen
@@ -46,7 +46,7 @@ Zum Benutzen von DocVer wird ein kompatibles Gerät mit Webbrowser und Internetv
 | Registrierung | Interessent | mich bei Do-Ver registrieren | für mich ein Konto erstellt wird | Registrierung möglich | Hoch |
 | Anmeldung | Nutzer | mich bei DocVer einloggen | ich den Service benutzen kann | Einloggen möglich | Hoch |
 | Dokument hochladen | Nutzer | Dokumente hochladen | der DocVer diese verwalten und analysieren kann | Hochladen möglich | Hoch |
-| Kategorie anlegen | Nutzer | Kategorie anlegen | ich meine hochgeladenen Dokumente in eigene Katgorien klassifizieren kann | Kategorie angelegt | Mittel |
+| Kategorie anlegen | Nutzer | Kategorie anlegen | ich meine hochgeladenen Dokumente in eigene Kategorien klassifizieren kann | Kategorie angelegt | Mittel |
 | Kategorie löschen | Nutzer | Kategorie löschen | Dokumente nicht mehr mit dieser Kategorie klassifiziert werden können | Kategorie gelöscht | Mittel |
 | Dokument klassifizieren | Nutzer | Dokumente klassifizieren | ich diese später besser einordnen kann | Dokument klassifiziert | Mittel |
 | Dokumente durchsuchen | Nutzer | meine Dokumente durchsuchen | ich das richtige Dokument finde | Dokument gefunden | Hoch |
@@ -117,11 +117,11 @@ Zum Speichern der hochgeladenen Bilddateien und generierten PDFs nutzen wir eine
 Der Client fragt Daten über den REST-Server an. Dieser fragt Daten aus der Datenbank oder der Nextcloud ab und sendet anschließend die Daten als JSON und die Dateien in dem gespeicherten Format zurück. Der REST-Server nutzt die ORM-Library Sequelize, für den Datanaustausch mit der Datenbank.
 Von dem Client können Daten nicht nur abgefragt, sondern auch Bilddateien von den zu analysierenden Dokumenten hochgeladen werden. Nachdem eine solche zum REST-Server hochgeladen wurde, speichert dieser die Datei auf dem Nextcloud Server und Daten wie Name und Speicherort in der Oracle Datenbank und sendet dem OCR Server ein Triggersignal. Dieser fragt dann aus der Datenbank unanalysierte Dateien ab, besorgt diese von der Nextcloud, analysiert diese und speichert die daraus resultierenden Daten in die Datenbank und das die generierte durchsuchbare PDF Datei in die Nextcloud.
 
+
+
 ![Sequenzdiagramm](../Overview/resources/Diagramme/doc-ver_Diagramme-Sequenzdiagramm.svg)
 
-- DB ↔ GraphQL ↔ Angular ↔ Client
-- Datei ↔ Client ↔ Webdav ↔ OCR API ↔ WebDav
-- OCR API ↔ [Volltext] ↔ DB
+
 
 ### Code Versionierung / Kollaboratives arbeiten
 

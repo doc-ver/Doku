@@ -11,26 +11,25 @@
 
 ##### NodeJS 
 
-- Aufräumen (Pia)
-- Datenbankanbindung über Sequelize vorbereiten (Pia)
+- REST Routen definieren (Andre)
+- DB Controller Funktionen definieren (Andre)
 
 #### Frontend:
 
-- Aufräumen  (Pia)
+- Oberfläche vorbereiten (Pia)
+- Settings Funktionen fertigstellen (Pia
 
 #### Datenbank:
 
-- OracleDB Tabellen einrichten mit Sequelize (Andre)
-- Definition erster Stored Procedures (Ken)
-- Skript für die DB exportieren (Pia)
+- Definition Stored Procedures (Ken)
+
+
 
 #### Dokumentation:
 
-- Diagramme aktualisieren (Andre)
 
-- Expose fertigstellen (Andre)
 
-  
+
 
 ## Grobe Bereiche:
 
