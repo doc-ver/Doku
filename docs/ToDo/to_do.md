@@ -11,50 +11,32 @@
 
 ##### NodeJS 
 
-> - Nextcloud Anbindung testen (Andre)
-> - Assoziationen für Wordbag fixen (Andre)
->
+- Nextcloud Anbindung testen (Andre)
+
+
 
 #### Frontend:
 
-- Fulltext von Doc in Modal anzeigen (Pia)
-
 - Original Dokument von Doc in Modal anzeigen (Andre)
-
-- Tabelle filtern wenn Inhaltssuche nicht aktiv
-
-- > Dokument hochladen
-  >
-  > - Modal fertig vorbereiten (Pia)
-  > - Dokument an Node Server schicken (Pia)
-  > - Dokument in Nextcloud speichern (Andre)
-
-- Serveranfrage bei Suche wenn Inhaltssuche aktiv
-
+- Dokument nach Hochladen in Nextcloud speichern (Andre)
+- Serveranfrage für Suche wenn Inhaltssuche aktiv
+- Nach Keywords oder Expression
 - Service Worker PWA anschauen -> Variable wenn nicht online?
 
   - Inhaltssuche Checkbox ausblenden wenn nicht online
-  - Original Dok ausblenden wenn nicht online
+  - Original Dokument ausblenden wenn nicht online
   - Detail Modal Icon ausblenden wenn nicht online und vorher gecached
+- View immer direkt aktualisieren
 
-- > Tagfeld fertigstellen (Pia)
-  >
-  > - Tag aus Vorschlagsliste auswählen -> Tag zu Dokument hinzufügen
-  >
-  > - Tag löschen
-  >
-  > - Bei Value nicht aus Vorschlagsliste -> Neue Kategorie hinzufügen und neue Kategorie zu Doc hinzu
-  >
-  >   
+
 
 #### Datenbank:
 
-> - Fertigstellung Stored Procedures (Ken)
-> - Stored Procedures analysieren
->   - Welche umsetzen (nur IN parameter)
->   - Welche weglassen
->   - Welche durch Funktion mit return ersetzen
->
+- Fertigstellung Stored Procedures (Ken)
+- Tag Funktionen fixen (DocumentController -> addTags, createTags)
+- Suche nach Keywords
+- Suche nach Expression
+- Suche nach Zeit
 
 
 
@@ -78,7 +60,7 @@
 
  - [ ] Frontend (Webseite)
 
- - [ ] Frontend Controler (Backend des Frontends)
+ - [ ] Frontend Controller (Backend des Frontends)
 
    
 
