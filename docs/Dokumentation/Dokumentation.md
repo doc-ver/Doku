@@ -56,11 +56,16 @@
   - Kommunikation zwischen Datenbank und Backend mittels ORM Framework und TCP
   - Kommunikation zwischen Backend und Nextcloud?
 
-  
+
+
 
 #### Darstellung des Ablaufs
 
 ![Verteilungsdiagramm](img/doc-ver_Diagramme-Sequenzdiagramm.svg)
+
+#### Schnittstellenübersicht
+
+
 
 ## Features
 

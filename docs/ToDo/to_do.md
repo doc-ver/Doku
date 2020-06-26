@@ -5,13 +5,11 @@
 
 ##### OCR
 
-- Schnittstelle zu WebDAV für eingehende Bilder und ausgehende PDFs einrichten (Ken)
-- Konvertierung PDFs (Ken)
 - Volltext in Datenbank speichern (Ken)
 
 ##### NodeJS 
 
-- Nextcloud Anbindung testen (Andre)
+- Nextcloud Datei downloaden (Andre)
 
 
 
@@ -19,8 +17,6 @@
 
 - Original Dokument von Doc in Modal anzeigen (Andre)
 - Dokument nach Hochladen in Nextcloud speichern (Andre)
-- Serveranfrage für Suche wenn Inhaltssuche aktiv
-- Nach Keywords oder Expression
 - Service Worker PWA anschauen -> Variable wenn nicht online?
 
   - Inhaltssuche Checkbox ausblenden wenn nicht online
@@ -28,21 +24,24 @@
   - Detail Modal Icon ausblenden wenn nicht online und vorher gecached
 - View immer direkt aktualisieren
 
-
+- Tag Input in Dokumentenmodal integrieren
+- Upload Document anpassen --> Ohne Stored Procedure und Erstellung direkt mit Tags
 
 #### Datenbank:
 
+- StoreUnanalysed Doc mit ORM ?
 - Fertigstellung Stored Procedures (Ken)
+  - StoreAnalysedDoc
+  - FindByKeywords
+  - FindByExpression
 - Tag Funktionen fixen (DocumentController -> addTags, createTags)
 - Suche nach Keywords
 - Suche nach Expression
-- Suche nach Zeit
 
 
 
 #### Dokumentation:
 
-- Dokumentationstemplate erstellen
 - Kapitel zuweisen
 - Kapitel fertigschreiben
 
