@@ -7,43 +7,50 @@
 
 - Volltext in Datenbank speichern (Ken)
 
-##### NodeJS 
 
-- Nextcloud Datei downloaden (Andre)
+
+**Node JS**
+
+- Create Tag Funktion fixen&rarr; Tag erstellen und anschließend zu Doc linken (derzeit wird der Tag dupliziert)
+- Suche nach Keywords &rarr; In DB und Backend abschließen und in View testen
+- Suche nach Expression  &rarr; In DB und Backend abschließen und in View testen
+- Create Dokument fixen &rarr; Bei der Übergabe bereits existierender Tags, werden diese neu erstellt statt nur verknüpft zu werden
+- Generelles Code Refactoring
 
 
 
 #### Frontend:
 
-- Original Dokument von Doc in Modal anzeigen (Andre)
-- Dokument nach Hochladen in Nextcloud speichern (Andre)
+- Loading Spinner bei Dokument hochladen? &rarr; Dauert sehr lange ohne Rückmeldung für den User
+
+- Anmelde Button in mobile auf 100% Breite setzen
+
 - Service Worker PWA anschauen -> Variable wenn nicht online?
 
   - Inhaltssuche Checkbox ausblenden wenn nicht online
   - Original Dokument ausblenden wenn nicht online
   - Detail Modal Icon ausblenden wenn nicht online und vorher gecached
-- View immer direkt aktualisieren
+  
+- Detailansicht analysierter Dokumente testen
 
-- Tag Input in Dokumentenmodal integrieren
-- Upload Document anpassen --> Ohne Stored Procedure und Erstellung direkt mit Tags
+- Generelles Code Refactoring
+
+  
 
 #### Datenbank:
 
-- StoreUnanalysed Doc mit ORM ?
 - Fertigstellung Stored Procedures (Ken)
   - StoreAnalysedDoc
   - FindByKeywords
   - FindByExpression
-- Tag Funktionen fixen (DocumentController -> addTags, createTags)
-- Suche nach Keywords
-- Suche nach Expression
-
-
+  
+  
 
 #### Dokumentation:
 
 - Kapitel zuweisen
 - Kapitel fertigschreiben
+- 
 
 
 
