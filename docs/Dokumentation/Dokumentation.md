@@ -84,13 +84,13 @@ Falls genug Zeit gegen Ende übrig bleibt, wäre eine automatische Klassifizieru
 
 ### Systementwurf
 
-#### Frontend
-
-- Strukturdiagramm NodeJS Server (Pia)
-
 #### Backend
 
-- Strukturdiagramm Angular App (Pia)
+![Node Struktur](img/StructureNodeJS.svg)
+
+#### Frontend
+
+![Structure Angular](img/StructureAngular.svg)
 
 #### Gesamtüberblick
 
