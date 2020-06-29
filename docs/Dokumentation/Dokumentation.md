@@ -8,23 +8,19 @@
 
 ## Einleitung
 
-- Einleitungstext
-- Zielgruppe
+Das System soll digitalisierte Dokumente, wie z.B. Fotos oder Scans verwalten können. Dafür sollen diese hochgeladen werden und anschließend automatisch zum Nutzer zugeordnet gespeichert, mit optischer Zeichenerkennung (OCR) analysiert und in durchsuchbare PDFs umgewandelt werden. Außerdem sollen sie klassifiziert werden können. Für die Klassifizierung hat der Nutzer einige Standard Kategorien, welche bereits angelegt worden sind und nicht gelöscht werden können. Weiterhin kann jeder Nutzer sich eigene Kategorien anlegen, in die er seine Dokumente anschließend klassifizieren kann. Die Klassifizierung soll zunächst manuell erfolgen, in dem der Nutzer entweder beim Upload eines Dokuments die Kategorie auswählt, oder das Dokument später in einer Kategorie klassifiziert. Nachdem die Dokumente in das System aufgenommen wurden, soll eine Volltextsuche über diese möglich sein und eine Übersicht über sie gegeben werden. Auch kann eine Suche nach Begriffen durchgeführt werden, welche Dokumente liefert, die diese Begriffe enthalten. Die Anwendung soll mittels eines Browsers mobil (via Smartphone oder Tablet) sowie lokal (am PC) benutzbar sein.
+
+- Zielgruppe (Andre9)
 
 ## Planung
 
 ### Idee
 
-- System zum Verwalten von Dokumenten
-- browserbasiert für Mobilgeräte optimiert
-- Volltextsuche von Dokumenten
-- Strukturierung von Dokumenten
-
-Das System soll digitalisierte Dokumente, wie z.B. Fotos oder Scans verwalten können. Dafür sollen diese hochgeladen werden und anschließend automatisch zum Nutzer zugeordnet gespeichert, mit optischer Zeichenerkennung (OCR) analysiert und in durchsuchbare PDFs umgewandelt werden. Außerdem sollen sie klassifiziert werden können. Für die Klassifizierung hat der Nutzer einige Standard Kategorien, welche bereits angelegt worden sind und nicht gelöscht werden können. Weiterhin kann jeder Nutzer sich eigene Kategorien anlegen, in die er seine Dokumente anschließend klassifizieren kann. Die Klassifizierung soll zunächst manuell erfolgen, in dem der Nutzer entweder beim Upload eines Dokuments die Kategorie auswählt, oder das Dokument später in einer Kategorie klassifiziert. Nachdem die Dokumente in das System aufgenommen wurden, soll eine Volltextsuche über diese möglich sein und eine Übersicht über sie gegeben werden. Auch kann eine Suche nach Begriffen durchgeführt werden, welche Dokumente liefert, die diese Begriffe enthalten. Die Anwendung soll mittels eines Browsers mobil (via Smartphone oder Tablet) sowie lokal (am PC) benutzbar sein.
+- Anforderungstexte aus Expose (Andre)
 
 ### Mockups
 
-
+- Mockups überarbeiten und einfügen (Pia)
 
 ### Datenbankentwurf
 
@@ -35,6 +31,8 @@ Das System soll digitalisierte Dokumente, wie z.B. Fotos oder Scans verwalten k�
 - Stored Procedures, Functions und Trigger nicht in ER Diagramm sondern mit Tabellen darstellen
 
 #### Stored Procedures
+- Funktion hinzufügen (Andre)
+
 | Stored Procedure | Input |
 |------------------|-------|
 | StoreAnalyzedDoc | Document.doc:_id, Document.analyzed_start, Document.analyzed_end, Document.pdfpath, words |
@@ -55,11 +53,11 @@ Das System soll digitalisierte Dokumente, wie z.B. Fotos oder Scans verwalten k�
 
 #### Frontend
 
-- Strukturdiagramm NodeJS Server
+- Strukturdiagramm NodeJS Server (Pia)
 
 #### Backend
 
-- Strukturdiagramm Angular App
+- Strukturdiagramm Angular App (Pia)
 
 #### Gesamtüberblick
 
@@ -84,9 +82,17 @@ Das System soll digitalisierte Dokumente, wie z.B. Fotos oder Scans verwalten k�
 
 #### Schnittstellenübersicht
 
+(Andre)
+
+|      Route        |      Parameter      |               Body                   | Funktion |
+|-------------------|---------------------|--------------------------------------|----------|
+||  |  | |
+
 
 
 ## Features
+
+- alle Features unter Kategorie als ausführliche Stichpunkte formulieren
 
 ### Dokumentenverwaltung mit Klassifizierung
 
@@ -94,16 +100,17 @@ Das System soll digitalisierte Dokumente, wie z.B. Fotos oder Scans verwalten k�
 - Kategorienverwaltung
 - Dokumente in Kategorien ordnen
 - Dashboard Ansicht
+(Andre)
 
 ### OCR Analyse
-
+(Ken)
 
 
 ### Offline Nutzung
 
 - Cachen der Seite mittels PWA
 - Cachen der Volltextvorschau von bereits geöffneten Dokumenten
-
+(Pia)
 
 
 ## Genutzte Technologien
@@ -113,31 +120,42 @@ Das System soll digitalisierte Dokumente, wie z.B. Fotos oder Scans verwalten k�
 - Deployment Übersicht
   - Welche Container?
   - Wie deployed?
+(Ken)
 
 ### OCR Analyse 
 
 - Genauere Erklärung zur Umsetzung
 - Welche OCR Lib
+(Ken)
 
 ### Nextcloud
 
 - Datenablage der Original Files
 - Datenablage der generierten PDFs
+(Andre)
 
 ### Oracle Datenbank
 
 - Genauere Erklärung zur Umsetzung mit Tablespaces, Nutzer, Stored Procedures etc.
+(Ken)
 
 ### Node JS
 
 - Libs und kurze Erklärung
+(Pia)
 
 ### Angular
 
 - Libs und kurze Erklärung
+(Pia)
 
 ## Fazit
 
-
+- Mit modernen ORM Frameworks sollte man Oracle nicht nutzen
+- Das Erstellen von DB Funktionen mit Oracle ist mühsam (schlechte Debugging Möglichkeiten) 
 
 ## Ausblick
+
+- Satzzeichen könnten als Wörter behandelt werden um die Suche zu verbessern
+	- Derzeit Satzzeichen am Wort direkt und daher evtl. nicht als Suchergebnis
+- Es wäre möglich, die Firebase mit einer eigenen Authentifizierungsmöglichkeit zu ersetzen
