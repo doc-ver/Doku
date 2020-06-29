@@ -20,7 +20,39 @@ Das System soll digitalisierte Dokumente, wie z.B. Fotos oder Scans verwalten k�
 
 ### Mockups
 
-- Mockups überarbeiten und einfügen (Pia)
+#### Home Ansicht
+
+![Home View](img/mockups/HomeView.png)
+
+#### Dashboard Ansicht
+
+![Dashboard View](img/mockups/DashboardView.png)
+
+#### Dokumentenansicht
+
+![Dokumenten View](img/mockups/DokumentView.png)
+
+#### Dokumentenansicht - Dokument löschen
+
+![Dokument View - Delete](img/mockups/DokumentView_Delete.png)
+
+#### Dokumentenansicht - Dokument hinzufügen
+
+![Dokument View - New](img/mockups/DokumentView_New.png)
+
+#### Dokumentenansicht - Detailansicht
+
+![Dokumenten View - Details](img/mockups/DokumentDetailView.png)
+
+#### Einstellungen
+
+![Settings View](img/mockups/SettingsView.png)
+
+#### Mobile Ansicht
+
+![Mobile View](img/mockups/MobileView.png)
+
+
 
 ### Datenbankentwurf
 

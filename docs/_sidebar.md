@@ -2,5 +2,3 @@
 * [To Do](./ToDo/to_do.md)
 * [Expose](./Expose/expose.md)
 * [Dokumentation](./Dokumentation/Dokumentation.md)
-* [Overview](./Overview/overview.md)
-* [Mockups](./Mockups/mockups.md)
