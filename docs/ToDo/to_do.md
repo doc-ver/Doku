@@ -11,7 +11,8 @@
 
 **Node JS**
 
-- Create Tag Funktion fixen&rarr; Tag erstellen und anschließend zu Doc linken
+- Fixen von Delete Document Funktion (CASCADE Probleme und Löschen aus Nextcloud)
+
 - Suche nach Expression  &rarr; In DB und Backend abschließen und in View testen
 - Generelles Code Refactoring
 
