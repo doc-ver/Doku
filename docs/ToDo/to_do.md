@@ -32,10 +32,8 @@
 #### Datenbank:
 
 - Fertigstellung Stored Procedures (Ken)
-  - StoreAnalysedDoc
-  - FindByKeywords
   - FindByExpression
-  
+
   
 
 #### Dokumentation:
