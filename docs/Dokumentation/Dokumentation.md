@@ -174,13 +174,80 @@ Falls genug Zeit gegen Ende übrig bleibt, wäre eine automatische Klassifizieru
 
 ### Node JS
 
-- Libs und kurze Erklärung
-(Pia)
+Genutzt für dieses Projekt wird ein mit Docker gehoseter Node Container mit der LTS Version. Bei der Strukturierung des Backends haben wir eine modulare Struktur genutzt. Folgende Module und Libraries verwenden wir.
+
+#### Database ORM Adapter
+
+Um das Backend mit der Datenbank zu verwenden wird das ORM Framework `Sequelize` genutzt. Da dieses in der aktuellen Version keine Oracle Datenbank unterstützt, wird auf einen Fork dieses Frameworks in der Version 3 zurückgegriffen Um dieses nutzen zu können wird darüber hinaus eine Library verwendet, welche die Oracle Datenbanktreiber enthält. Innerhalb des Datenbankadapters verwenden wir eine Model und Controller Struktur. Für jede Datenbanktabelle wurde somit ein Model und ein Controller angelegt. Das Model enthält die Tabellendefinition und im Controller sind alle Datenbankoperationen und Funktionsaufrufe zu finden, welche mit dieser Tabelle zusammenhängen. Folgende Libraries sind dafür im Node Server notwendig:
+
+- [sequelize-oracle](https://www.npmjs.com/package/sequelize-oracle)
+
+- [oracledb  ](https://www.npmjs.com/package/oracledb)
+
+#### REST Server
+
+Damit die Webanwendung mit dem Backend kommunizieren kann arbeiten wir mit REST Routen. Dafür ist auch eine Middleware notwendig, welche den Request Body parsen kann. Einige REST Routen sind dabei so definiert, dass diese direkt die Funktionen aus den Datenbank Controllern aufrufen, womit es sehr einfach ist Datenbankoperationen aus der Webanwendung zu triggern.
+
+- [express ](https://www.npmjs.com/package/express)
+- [body-parser](https://www.npmjs.com/package/body-parser)
+
+#### Firebase Adapter
+
+Da die Anwendung nutzerbasiert funktionieren soll, ist eine Authentifizierungsmöglichkeit notwendig. Diese ist mit Hilfe von Firebase umgesetzt. Dies ist ein Google Service, zur Nutzerverwaltung und Authentifizierung. Auf der Serverseite wird dabei das Admin SDK für Node verwendet, um Funktionen, wie z.B die Nutzerverifizierung oder die Registrierung neuer Nutzer, durchführen zu können.
+
+- [firebase-admin](https://www.npmjs.com/package/firebase-admin)
+
+#### Nextcloud Adapter
+
+Da in der Datenbank nur der Dokumentenpfad gespeichert wird, ist es notwendig zusätzlich einen WebDAV Dienst zu nutzen, welcher die hochgeladenen Dateien nutzerbasiert speichert. Dabei haben wir uns für den Dienst Nextcloud entschieden. Dieser bietet eine einfache Client API mit Hilfe dessen Dateien erstellt, ausgelesen und gelöscht werden können.
+
+- [nextcloud-node-client](https://www.npmjs.com/package/firebase-admin)
+
+- [file-type](https://www.npmjs.com/package/file-type)
+
+  
+
+#### Logging
+
+Um nach dem Deploy auf die Umgebung einfach Fehler finden zu können, wurde ein Logging System implementiert. Dabei gibt es drei verschiedene Dateien (Info, Error, Debug), welche mit Hilfe einer REST Route erreichbar sind und welche den Loginhalt basiert auf Logleveln ausgeben können.
+
+- [fs](https://www.npmjs.com/package/fs)
+- [util](https://www.npmjs.com/package/util)
+
+
 
 ### Angular
 
-- Libs und kurze Erklärung
-(Pia)
+#### Design
+
+Das Design der Webanwendung basiert grundsätzlich auf dem Bootstrap Framework in der Version 4. Da dieses aber keine Icons enthält sowie einige andere nützliche Komponenten nutzen wir zusätzlich die Angular Material Bibliothek, dessen Icons wir verwenden. Die Anwendung ist dabei komplett responsiv und passt sich auf alle Endgeräte mit der Größe an. Um das Design modern wirken zu lassen, werden bei allen Aktionen mit dem Backend Push Notifications angezeigt, welche dem Nutzer den Status der Aktion mitteilen. Diese können beliebig platziert werden, je nachdem ob gerade ein Modal geöffnet ist, oder nicht.
+
+- [@ng-bootstrap/ng-bootstrap](https://www.npmjs.com/package/@ng-bootstrap/ng-bootstrap)
+- [@angular/material](https://www.npmjs.com/package/@angular/material)
+- [ngx-toastr](https://www.npmjs.com/package/ngx-toastr)
+
+#### Authentifizierung
+
+Für die Nutzerauthentifizierung in der Webanwendung nutzen wir die clientseitige Firebasebibliothek, welche z.B. Funktionen wie Login und Passwort zurücksetzen anbietet. Dabei erstellen wir uns einen Eintrag im Local Storage, wenn der Nutzer eingeloggt ist, um diesen eingeloggt zu lassen, sollte die Seite neu geladen werden. Der Nutzer wird dabei automatisch ausgeloggt, sollte das Token der Firebase auslaufen und somit kann der Nutzer nicht dauerhaft eingeloggt bleiben.
+
+- [firebase](https://www.npmjs.com/package/firebase)
+
+#### Dokumentendetail Anzeige
+
+Der Hauptfokus der Anwendung ist die Dokumentenverwaltung. Im Rahmen dieser, kann man sich von allen Dokumenten in der Liste eine Detailansicht anzeigen lassen. Diese bietet eine Dreiteilung der Ansicht mit Hilfe einer Tableiste. Im ersten Tab wird dabei das hochgeladene Bild oder die hochgeladene PDF als original Datei angezeigt. Der zweite Tab stellt eine Volltextvorschau des Dokumententextes dar und der dritte Tab stellt die generierte PDF nach der OCR Analyse mit Hilfe eines PDF Viewers da. Dafür werden die anzuzeigenden PDFs als eingebetteter Viewer angezeigt, welcher auch Funktionalitäten wie z.B. die Suche anbietet.
+
+- [ng2-pdfjs-viewer](https://www.npmjs.com/package/ng2-pdfjs-viewer)
+
+#### Klassifizierung mit Kategorien
+
+Um dem Nutzer eine gute Usability zu bieten, verwenden wir ein Tag Input Feld. Dieses bietet eine Vorauswahl der vorhandenen Kategorien und ein einfaches Entfernen bereits vorhandener Kategorien von einem Dokument. Auch können so sehr einfach neue Kategorien hinzugefügt werden, welche vorher nicht existiert haben. Dieses Tag Input Feld wird in allen Komponenten verwendet. Auf der Dokumentenübersicht sowie beim Dokument hochladen ist dieses Feld editierbar. Auf dem Dashboard wird das Tag Input Feld nur genutzt, um vorhandene Kategorien hinzuzufügen. Hier ist kein Bearbeiten möglich.
+
+- [ngx-tags-input](https://www.npmjs.com/package/ngx-tags-input)
+
+#### Offline Nutzung und Caching
+
+- [@angular/service-worker](https://www.npmjs.com/package/@angular/service-worker)
+- [ng-connection-service](https://www.npmjs.com/package/ng-connection-service)
 
 ## Fazit
 
