@@ -11,19 +11,12 @@
 
 **Node JS**
 
-- Create Tag Funktion fixen&rarr; Tag erstellen und anschließend zu Doc linken (derzeit wird der Tag dupliziert)
-- Suche nach Keywords &rarr; In DB und Backend abschließen und in View testen
+- Fixen von Delete Document Funktion (CASCADE Probleme und Löschen aus Nextcloud)
+
 - Suche nach Expression  &rarr; In DB und Backend abschließen und in View testen
-- Create Dokument fixen &rarr; Bei der Übergabe bereits existierender Tags, werden diese neu erstellt statt nur verknüpft zu werden
 - Generelles Code Refactoring
 
-
-
 #### Frontend:
-
-- Loading Spinner bei Dokument hochladen? &rarr; Dauert sehr lange ohne Rückmeldung für den User
-
-- Anmelde Button in mobile auf 100% Breite setzen
 
 - Service Worker PWA anschauen -> Variable wenn nicht online?
 
@@ -40,17 +33,14 @@
 #### Datenbank:
 
 - Fertigstellung Stored Procedures (Ken)
-  - StoreAnalysedDoc
-  - FindByKeywords
   - FindByExpression
-  
+
   
 
 #### Dokumentation:
 
 - Kapitel zuweisen
 - Kapitel fertigschreiben
-- 
 
 
 
