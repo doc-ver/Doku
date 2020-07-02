@@ -1,4 +1,5 @@
-﻿# DocVer Dokumentation
+﻿
+# DocVer Dokumentation
 
 **Modul:** Datenbankanwendungen
 
@@ -8,15 +9,14 @@
 
 ## Einleitung
 
-Das System soll digitalisierte Dokumente, wie z.B. Fotos oder Scans verwalten können. Dafür sollen diese hochgeladen werden und anschließend automatisch zum Nutzer zugeordnet gespeichert, mit optischer Zeichenerkennung (OCR) analysiert und in durchsuchbare PDFs umgewandelt werden. Außerdem sollen sie klassifiziert werden können. Für die Klassifizierung hat der Nutzer einige Standard Kategorien, welche bereits angelegt worden sind und nicht gelöscht werden können. Weiterhin kann jeder Nutzer sich eigene Kategorien anlegen, in die er seine Dokumente anschließend klassifizieren kann. Die Klassifizierung soll zunächst manuell erfolgen, in dem der Nutzer entweder beim Upload eines Dokuments die Kategorie auswählt, oder das Dokument später in einer Kategorie klassifiziert. Nachdem die Dokumente in das System aufgenommen wurden, soll eine Volltextsuche über diese möglich sein und eine Übersicht über sie gegeben werden. Auch kann eine Suche nach Begriffen durchgeführt werden, welche Dokumente liefert, die diese Begriffe enthalten. Die Anwendung soll mittels eines Browsers mobil (via Smartphone oder Tablet) sowie lokal (am PC) benutzbar sein.
-
-- Zielgruppe (Andre9)
+DocVer ist ein System zum Verwalten von Dokumenten, das im Browser läuft und für Mobilgeräte optimiert ist. Durch die Analyse verwalteter Dokumente, bietet es eine Volltextsuche über alle Dokumente an. Optional, bietet DocVer außerdem eine Schnittstelle für Erweiterungen, welche tiefere Analysen der Dokumente ermöglicht. Durch eine strukturierte Darstellung hochgeladener Dokumente bekommt der Nutzer eine einfache und zeiteffiziente Möglichkeit, seine Dokumente zu durchsuchen und notwendige Dokumente schnell zu finden.
+Zum Benutzen von DocVer wird ein kompatibles Gerät mit Webbrowser und Internetverbindung benötigt. In der derzeitigen Version wird der Google Chrome Browser benötigt. Das System soll dadurch sehr zugänglich und für eine breite Nutzergruppe geeignet sein. Jede Person, die ihre Dokumente verwalten möchte und einen PC mit Scanner, ein Smartphone, ein Tablet o.ä. besitzt, soll dies mit unserem Service machen können. Auch für (derzeit noch kleinere) Organisationen ist das System geeignet.
 
 ## Planung
 
 ### Idee
 
-- Anforderungstexte aus Expose (Andre)
+Das System soll digitalisierte Dokumente, wie z.B. Fotos oder Scans verwalten können. Dafür sollen diese hochgeladen werden und anschließend automatisch zum Nutzer zugeordnet gespeichert, mit optischer Zeichenerkennung (OCR) analysiert und in durchsuchbare PDFs umgewandelt werden. Außerdem sollen sie klassifiziert werden können. Für die Klassifizierung hat der Nutzer einige Standard Kategorien, welche bereits angelegt worden sind und nicht gelöscht werden können. Weiterhin kann jeder Nutzer sich eigene Kategorien anlegen, in welche er seine Dokumente anschließend klassifizieren kann. Die Klassifizierung soll zunächst manuell erfolgen, in dem der Nutzer entweder beim Upload eines Dokuments die Kategorie auswählt, oder das Dokument später in einer Kategorie klassifiziert. Nachdem die Dokumente in das System aufgenommen wurden, soll eine Volltextsuche über diese möglich sein und eine Übersicht über sie gegeben werden. Auch kann eine Suche nach Begriffen durchgeführt werden, welche Dokumente liefert, die diese Begriffe enthalten. Die Anwendung soll mittels eines Browsers mobil (via Smartphone oder Tablet) sowie lokal (am PC) benutzbar sein.
 
 ### Mockups
 
@@ -33,16 +33,13 @@ Das System soll digitalisierte Dokumente, wie z.B. Fotos oder Scans verwalten k�
 #### Stored Procedures
 - Funktion hinzufügen (Andre)
 
-| Stored Procedure | Input |
-|------------------|-------|
-| StoreAnalyzedDoc | Document.doc:_id, Document.analyzed_start, Document.analyzed_end, Document.pdfpath, words |
-
 #### Stored Functions
-|  Stored Function  |          Input         |             Output             |
-|-------------------|------------------------|--------------------------------|
-| GetDocsByKeywords | User.user_id, keywords | Document.doc_id, Document.name |
-| GetDocsByUserAndExpression | User.user_id, expression | Document.doc_id, Document.name |
-| GetFullDocText | Document.doc_id | Document.name, doc_text |
+|  Stored Function  |          Input         |             Output             | Funktion |
+|-------------------|------------------------|--------------------------------|-----------|
+| GetDocsByKeywords | User.user_id, keywords | Document.doc_id, Document.name | Gibt eine Liste mit Dokumenten, die min. eines der Keywords enthalten, zurück. |
+| GetDocsByUserAndExpression | User.user_id, expression | Document.doc_id, Document.name | Gibt eine Liste mit Dokumenten, die mit dem Regex übereinstimmen, zurück. |
+| GetFullDocText | Document.doc_id | Document.name, doc_text | Setzt den gemerierten Text eines Dokuments zusammen und gibt ihn zurück. |
+| StoreAnalyzedDoc | Document.doc:_id, Document.analyzed_start, Document.analyzed_end, Document.pdfpath, words | - | Speichert alle, beim analysieren generierte, Daten in der Datenbank. |
 
 #### Trigger
 |      Trigger      |      Zeitpunkt      |               Funktion               |
@@ -159,3 +156,5 @@ Das System soll digitalisierte Dokumente, wie z.B. Fotos oder Scans verwalten k�
 - Satzzeichen könnten als Wörter behandelt werden um die Suche zu verbessern
 	- Derzeit Satzzeichen am Wort direkt und daher evtl. nicht als Suchergebnis
 - Es wäre möglich, die Firebase mit einer eigenen Authentifizierungsmöglichkeit zu ersetzen
+
+Als Erweiterung des Systems, wäre eine automatische Klassifizierung denkbar, die hochgeladene Dokumente automatisch in die passende Kategorie einsortieren kann. Außerdem wäre eine Schnittstelle mit erweiternder Funktionalität möglich, die tiefere Analysen der Dokumente durchführt und es ermöglicht, Zusatzmodule zu implementieren, welche die Daten analysieren. Ein Beispiel dafür wäre ein automatisches Fahrtenbuch, das aus Daten von Tankquittungen erstellt wird.
