@@ -3,44 +3,29 @@
 
 #### Backend:
 
-##### OCR
-
-- Volltext in Datenbank speichern (Ken)
-
-
-
 **Node JS**
 
-- Fixen von Delete Document Funktion (CASCADE Probleme und Löschen aus Nextcloud)
-
-- Suche nach Expression  &rarr; In DB und Backend abschließen und in View testen
 - Generelles Code Refactoring
+- Standard Kategorien definieren
 
 #### Frontend:
 
-- Service Worker PWA anschauen -> Variable wenn nicht online?
+- Offline Konzept aufschreiben und aus View rausbauen
 
-  - Inhaltssuche Checkbox ausblenden wenn nicht online
-  - Original Dokument ausblenden wenn nicht online
-  - Detail Modal Icon ausblenden wenn nicht online und vorher gecached
-  
+- Bugfixing View
+
+- Regex ausbauen
+
 - Detailansicht analysierter Dokumente testen
 
 - Generelles Code Refactoring
 
   
 
-#### Datenbank:
-
-- Fertigstellung Stored Procedures (Ken)
-  - FindByExpression
-
-  
-
 #### Dokumentation:
 
-- Kapitel zuweisen
 - Kapitel fertigschreiben
+- Präsentation vorbereiten
 
 
 

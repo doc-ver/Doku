@@ -10,7 +10,10 @@
 ## Einleitung
 
 DocVer ist ein System zum Verwalten von Dokumenten, das im Browser läuft und für Mobilgeräte optimiert ist. Durch die Analyse verwalteter Dokumente, bietet es eine Volltextsuche über alle Dokumente an. Optional, bietet DocVer außerdem eine Schnittstelle für Erweiterungen, welche tiefere Analysen der Dokumente ermöglicht. Durch eine strukturierte Darstellung hochgeladener Dokumente bekommt der Nutzer eine einfache und zeiteffiziente Möglichkeit, seine Dokumente zu durchsuchen und notwendige Dokumente schnell zu finden.
+
 Zum Benutzen von DocVer wird ein kompatibles Gerät mit Webbrowser und Internetverbindung benötigt. In der derzeitigen Version wird der Google Chrome Browser benötigt. Das System soll dadurch sehr zugänglich und für eine breite Nutzergruppe geeignet sein. Jede Person, die ihre Dokumente verwalten möchte und einen PC mit Scanner, ein Smartphone, ein Tablet o.ä. besitzt, soll dies mit unserem Service machen können. Auch für (derzeit noch kleinere) Organisationen ist das System geeignet.
+
+
 
 ## Planung
 
@@ -62,10 +65,7 @@ Falls genug Zeit gegen Ende übrig bleibt, wäre eine automatische Klassifizieru
 
 ![ER Diagramm](img/doc-ver_Diagramme-ER-Diagramm.svg)
 
-#### Stored Procedures
-- Funktion hinzufügen (Andre)
-- Stored Procedure zu Funktion setzen (Andre)
-
+#### 
 #### Stored Functions
 |  Stored Function  |          Input         |             Output             | Funktion |
 |-------------------|------------------------|--------------------------------|-----------|
@@ -78,6 +78,8 @@ Falls genug Zeit gegen Ende übrig bleibt, wäre eine automatische Klassifizieru
 |      Trigger      |      Zeitpunkt      |               Funktion               |
 |-------------------|---------------------|--------------------------------------|
 | DeleteUnusedWords | ON_DELETE(Document) | Löscht unbenutzte Wörter aus Wordbag |
+
+
 
 ### Systementwurf
 
@@ -171,7 +173,7 @@ Falls genug Zeit gegen Ende übrig bleibt, wäre eine automatische Klassifizieru
 
 ### Node JS
 
-Genutzt für dieses Projekt wird ein mit Docker gehoseter Node Container mit der LTS Version. Bei der Strukturierung des Backends haben wir eine modulare Struktur genutzt. Folgende Module und Libraries verwenden wir.
+Genutzt für dieses Projekt wird ein mit Docker gehosteter Node Container mit der LTS Version. Bei der Strukturierung des Backends haben wir eine modulare Struktur genutzt. Folgende Module und Libraries verwenden wir.
 
 #### Database ORM Adapter
 
@@ -179,7 +181,7 @@ Um das Backend mit der Datenbank zu verwenden wird das ORM Framework `Sequelize`
 
 - [sequelize-oracle](https://www.npmjs.com/package/sequelize-oracle)
 
-- [oracledb  ](https://www.npmjs.com/package/oracledb)
+- [oracledb](https://www.npmjs.com/package/oracledb)
 
 #### REST Server
 
@@ -201,8 +203,6 @@ Da in der Datenbank nur der Dokumentenpfad gespeichert wird, ist es notwendig zu
 - [nextcloud-node-client](https://www.npmjs.com/package/firebase-admin)
 
 - [file-type](https://www.npmjs.com/package/file-type)
-
-  
 
 #### Logging
 
@@ -246,10 +246,14 @@ Um dem Nutzer eine gute Usability zu bieten, verwenden wir ein Tag Input Feld. D
 - [@angular/service-worker](https://www.npmjs.com/package/@angular/service-worker)
 - [ng-connection-service](https://www.npmjs.com/package/ng-connection-service)
 
+
+
 ## Fazit
 
 - Mit modernen ORM Frameworks sollte man Oracle nicht nutzen
 - Das Erstellen von DB Funktionen mit Oracle ist mühsam (schlechte Debugging Möglichkeiten) 
+
+
 
 ## Ausblick
 
