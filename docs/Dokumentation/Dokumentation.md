@@ -65,14 +65,13 @@ Falls genug Zeit gegen Ende übrig bleibt, wäre eine automatische Klassifizieru
 
 ![ER Diagramm](img/doc-ver_Diagramme-ER-Diagramm.svg)
 
-#### 
+
 #### Stored Functions
 |  Stored Function  |          Input         |             Output             | Funktion |
 |-------------------|------------------------|--------------------------------|-----------|
-| GetDocsByKeywords | User.user_id, keywords | Document.doc_id, Document.name | Gibt eine Liste mit Dokumenten, die min. eines der Keywords enthalten, zurück. |
-| GetDocsByUserAndExpression | User.user_id, expression | Document.doc_id, Document.name | Gibt eine Liste mit Dokumenten, die mit dem Regex übereinstimmen, zurück. |
-| GetFullDocText | Document.doc_id | Document.name, doc_text | Setzt den gemerierten Text eines Dokuments zusammen und gibt ihn zurück. |
-| StoreAnalyzedDoc | Document.doc:_id, Document.analyzed_start, Document.analyzed_end, Document.pdfpath, words | - | Speichert alle, beim analysieren generierte, Daten in der Datenbank. |
+| F_DOC_SEARCH_BY_KEYWORDS | userId (CHAR), keywords (VARCHAR2), minimum_matches(NUMBER) | docIds (VARCHAR2) | Gibt eine Liste mit DokumentenIds, die min. eines der Keywords enthalten, zurück. |
+| F_DOC_GET_FULLTEXT | docId(NUMBER) | fulltext(VARCHAR2) | Setzt den gemerierten Text eines Dokuments zusammen und gibt ihn zurück. |
+| F_DOC_STORE_ANALYSED | docId (NUMBER), pdfPath (VARCHAR2), fullText (VARCHAR2) | - | Speichert alle, beim analysieren generierte, Daten in der Datenbank. |
 
 #### Trigger
 |      Trigger      |      Zeitpunkt      |               Funktion               |
@@ -97,13 +96,7 @@ Falls genug Zeit gegen Ende übrig bleibt, wäre eine automatische Klassifizieru
 
 ### Kommunikationsentwurf
 
-Es gibt drei wichtige Kommunikationsrouten. Die erste ist zwischen dem Frontend und dem Backend. Das Backend stellt dafür einige REST-Schnittstellen zur Verfügung. Eine Übersicht über diese ist weiter unten im Abschnitt "Schnittstellenübersicht" zu finden. Die zweite wichtige Kommunikationsroute ist die für die Kommunikation zwischen dem Node-Server und der Datenbank. Dafür wird das ORM Framework "Sequelize-Oracle" genutzt, das ein Fork der Version 3 des normalen Sequelize Pakets ist, um es mit der Oracle Datenbank benutzen zu können. Die Kommunikation zwischen diesem und dem DBMS läuft über TCP. Die letzte wichtige Route ist die von dem Node-Server zur Nextcloud. Dafür wird die "nextcloud-node-client" (ncnc) Library genutzt, die mit dem Nextcloudserver über dessen WebDAV Schnittstelle kommuniziert und Dateien runter- oder hochlädt.
-
-- Allgemeiner Text zur Kommunikation
-
-  - Kommunikation zwischen Frontend und Backend über REST Routen
-  - Kommunikation zwischen Datenbank und Backend mittels ORM Framework und TCP
-  - Kommunikation zwischen Backend und Nextcloud?
+Es gibt drei wichtige Kommunikationsrouten. Die erste ist zwischen dem Frontend und dem Backend. Das Backend stellt dafür einige REST-Schnittstellen zur Verfügung. Eine Übersicht über diese ist weiter unten im Abschnitt "Schnittstellenübersicht" zu finden. Die zweite wichtige Kommunikationsroute ist die für die Kommunikation zwischen dem Node-Server und der Datenbank. Dafür wird das ORM Framework "Sequelize-Oracle" genutzt, das ein Fork der Version 3 des normalen Sequelize Pakets ist, um es mit der Oracle Datenbank benutzen zu können. Die Kommunikation zwischen diesem und dem DBMS läuft über TCP. Die letzte wichtige Route ist die von dem Node-Server zur Nextcloud. Dort liegen alle Dokumente, welche verwaltet werden. Dabei wird über die WebDAV Schnittstelle kommuniziert und Dateien hoch- oder heruntergeladen.
 
 #### Darstellung des Ablaufs
 
@@ -145,23 +138,74 @@ Es gibt drei wichtige Kommunikationsrouten. Die erste ist zwischen dem Frontend 
 | POST | /verify | /:token | -- | Usertoken authentifizieren |
 | POST | /update | /:uid | Nickname, Email und Passwort des Users | Daten des Users updaten |
 
-## Features
+##### User
 
-- alle Features unter Kategorie als ausführliche Stichpunkte formulieren
+|      Typ      |      Route        |      Parameter      |               Body                   | Funktion |
+|-------------------|---------------------|--------------------------------------|----------|----------|
+|POST|/user/register|           |  | |
+|POST|/user/verify/:token|           | | |
+|POST|/user/update/:uid|  | | |
 
-### Dokumentenverwaltung mit Klassifizierung
+##### Dokumente
 
-Zum Verwalten der Dokumente, können diese zuerst in das System hochgeladen werden. Dabei und auch danach können Tags zu diesen hinzugefügt werden, um sie damit zu Kategoriesieren. Dafür kann man Standardtags und selbst erstellte nutzen. Zum Ansehen aller Dokumente des Users gibt es eine Komplettübersicht. Dazu gibt es außerdem ein Dashboard, auf dem alle favorisierten und zuletzt hinzugefügten Dokumente angezeigt werden.
+| Typ    | Route               | Parameter | Body | Funktion |
+| ------ | ------------------- | --------- | ---- | -------- |
+| GET    | /tags/user/:userId  |           |      |          |
+| POST   | /tags/create        |           |      |          |
+| POST   | /tags/update/:tagId |           |      |          |
+| DELETE | /tags/:tagId        |           |      |          |
 
-### OCR Analyse
-(Ken)
+##### Kategorien
 
+| Typ    | Route                                     | Parameter | Body | Funktion |
+| ------ | ----------------------------------------- | --------- | ---- | -------- |
+| GET    | /documents/user/:userId                   |           |      |          |
+| GET    | /documents/keywords/:userId/:keywords     |           |      |          |
+| GET    | /documents/text/:docId                    |           |      |          |
+| GET    | /documents/content/:docId                 |           |      |          |
+| GET    | /documents/pdf/:docId                     |           |      |          |
+| GET    | /documents/time/:userId/:minTime/:maxTime |           |      |          |
+| POST   | /documents/tag/:docId                     |           |      |          |
+| POST   | /documents/favorize/:userId/:docId        |           |      |          |
+| POST   | /documents/unfavorize/:userId/:docId      |           |      |          |
+| POST   | /documents/create                         |           |      |          |
+| PUT    | /documents/tag/:docId                     |           |      |          |
+| PUT    | /documents/tags/:docId                    |           |      |          |
+| DELETE | /documents/tag/:docId/:tagId              |           |      |          |
+| DELETE | /documents/:docId                         |           |      |          |
 
 ### Offline Nutzung
 
-- Cachen der Seite mittels PWA
-- Cachen der Volltextvorschau von bereits geöffneten Dokumenten
-(Pia)
+- Konzeption zur Offline Nutzung ergänzen (Pia)
+
+## Features
+
+### Nutzereinstellungen
+
+- Nutzer können sich registrieren sowie ihre Nutzerdaten aktualisieren
+- Jeder Nutzer hat die Möglichkeit eigene Kategorien anzulegen
+
+### Dokumentenverwaltung mit Klassifizierung
+
+- Nutzer können Dokumente hochladen um diese zu verwalten
+- Verwaltete Dokumente werden in einer übersichtlichen Liste dargestellt
+- In der Detailansicht eines Dokuments, können Nutzer die Originaldatei, eine Volltextvorschau sowie die generierte PDF einsegen
+- Zur besseren Übersicht können Dokumente mit Hilfe von Kategorien klassifiziert werden
+- Für die Klassizierung werden Standard Kategorien angeboten.
+- Nutzer haben Zugriff auf eine Dashboardansicht, welche die letzten Dokumente sowie die Favoriten darstellt
+
+### Dokumentensuche
+
+- Nutzer können die gelisteten Dokumente durchsuchen
+- Dabei ist eine Filterung der Tabelle sowie eine Inhaltssuche welche den Inhalt der Dokumente filtert möglich
+
+### Nutzereinstellungen
+
+- Nutzer können sich registrieren sowie ihre Nutzerdaten aktualisieren
+- Jeder Nutzer hat die Möglichkeit eigene Kategorien anzulegen
+
+### OCR Analyse
+- Ausführliche Stichpunkte formulieren (Ken)
 
 
 ## Genutzte Technologien
@@ -258,10 +302,7 @@ Um dem Nutzer eine gute Usability zu bieten, verwenden wir ein Tag Input Feld. D
 
 - [ngx-tags-input](https://www.npmjs.com/package/ngx-tags-input)
 
-#### Offline Nutzung und Caching
-
-- [@angular/service-worker](https://www.npmjs.com/package/@angular/service-worker)
-- [ng-connection-service](https://www.npmjs.com/package/ng-connection-service)
+- https://www.npmjs.com/package/ng-connection-service)
 
 
 

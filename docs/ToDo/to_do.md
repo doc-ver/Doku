@@ -1,20 +1,11 @@
 # ToDo
 ## Aufteilung Arbeitspakete
 
-#### Backend:
-
-**Node JS**
-
-- Generelles Code Refactoring
-- Standard Kategorien definieren
-
 #### Frontend:
 
-- Offline Konzept aufschreiben und aus View rausbauen
+- Offline Konzept aufschreiben
 
 - Bugfixing View
-
-- Regex ausbauen
 
 - Detailansicht analysierter Dokumente testen
 
