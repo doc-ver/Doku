@@ -104,8 +104,8 @@ Es gibt drei wichtige Kommunikationsrouten. Die erste ist zwischen dem Frontend 
 
 #### Schnittstellenübersicht
 
-(Andre)
-**Dokumenten Schnittstelle -- Basisroute: /documents**
+##### Dokumenten Schnittstelle - Basisroute: /documents
+
 | HTTP |      Route        |      Parameter      |               Body                   | Funktion |
 |--------------|-------------------|---------------------|-----------------------|----------|
 | POST | /create | -- | Neues Dokument inkl. Rohdatei | Dokument zum System hinzufügen |
@@ -123,7 +123,8 @@ Es gibt drei wichtige Kommunikationsrouten. Die erste ist zwischen dem Frontend 
 | POST | /unfavorize | /:userId/:docId | -- | Dokument eines Users von Favoriten entfernen |
 | DELETE | -- | /:docId | -- | Dokument löschen |
 
-**Tag Schnittstelle -- Basisroute: /tags**
+##### **Tag Schnittstelle - Basisroute: /tags**
+
 | HTTP |      Route        |      Parameter      |               Body                   | Funktion |
 |--------------|-------------------|---------------------|-----------------------|----------|
 | GET | /user | /:userId | -- | Alle Tags des Users erhalten |
@@ -131,48 +132,15 @@ Es gibt drei wichtige Kommunikationsrouten. Die erste ist zwischen dem Frontend 
 | POST | /update | /:tagId | Tag-Objekt | Tag updaten |
 | DELETE | -- | /:tagId | -- | Tag löschen |
 
-**User Schnittstelle -- Basisroute: /user**
+##### **User Schnittstelle - Basisroute: /user**
+
 | HTTP |      Route        |      Parameter      |               Body                   | Funktion |
 |--------------|-------------------|---------------------|-----------------------|----------|
 | POST | /register | -- | Nickname, Email und Passwort des neuen Users | User auf der Firebase registrieren und UserId enthalten |
 | POST | /verify | /:token | -- | Usertoken authentifizieren |
 | POST | /update | /:uid | Nickname, Email und Passwort des Users | Daten des Users updaten |
 
-##### User
 
-|      Typ      |      Route        |      Parameter      |               Body                   | Funktion |
-|-------------------|---------------------|--------------------------------------|----------|----------|
-|POST|/user/register|           |  | |
-|POST|/user/verify/:token|           | | |
-|POST|/user/update/:uid|  | | |
-
-##### Dokumente
-
-| Typ    | Route               | Parameter | Body | Funktion |
-| ------ | ------------------- | --------- | ---- | -------- |
-| GET    | /tags/user/:userId  |           |      |          |
-| POST   | /tags/create        |           |      |          |
-| POST   | /tags/update/:tagId |           |      |          |
-| DELETE | /tags/:tagId        |           |      |          |
-
-##### Kategorien
-
-| Typ    | Route                                     | Parameter | Body | Funktion |
-| ------ | ----------------------------------------- | --------- | ---- | -------- |
-| GET    | /documents/user/:userId                   |           |      |          |
-| GET    | /documents/keywords/:userId/:keywords     |           |      |          |
-| GET    | /documents/text/:docId                    |           |      |          |
-| GET    | /documents/content/:docId                 |           |      |          |
-| GET    | /documents/pdf/:docId                     |           |      |          |
-| GET    | /documents/time/:userId/:minTime/:maxTime |           |      |          |
-| POST   | /documents/tag/:docId                     |           |      |          |
-| POST   | /documents/favorize/:userId/:docId        |           |      |          |
-| POST   | /documents/unfavorize/:userId/:docId      |           |      |          |
-| POST   | /documents/create                         |           |      |          |
-| PUT    | /documents/tag/:docId                     |           |      |          |
-| PUT    | /documents/tags/:docId                    |           |      |          |
-| DELETE | /documents/tag/:docId/:tagId              |           |      |          |
-| DELETE | /documents/:docId                         |           |      |          |
 
 ### Offline Nutzung
 
