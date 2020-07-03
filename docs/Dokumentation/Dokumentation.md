@@ -95,9 +95,9 @@ Falls genug Zeit gegen Ende übrig bleibt, wäre eine automatische Klassifizieru
 
 ![Verteilungsdiagramm](img/doc-ver_Diagramme-Verteilungsdiagramm.svg)
 
-
-
 ### Kommunikationsentwurf
+
+Es gibt drei wichtige Kommunikationsrouten. Die erste ist zwischen dem Frontend und dem Backend. Das Backend stellt dafür einige REST-Schnittstellen zur Verfügung. Eine Übersicht über diese ist weiter unten im Abschnitt "Schnittstellenübersicht" zu finden. Die zweite wichtige Kommunikationsroute ist die für die Kommunikation zwischen dem Node-Server und der Datenbank. Dafür wird das ORM Framework "Sequelize-Oracle" genutzt, das ein Fork der Version 3 des normalen Sequelize Pakets ist, um es mit der Oracle Datenbank benutzen zu können. Die Kommunikation zwischen diesem und dem DBMS läuft über TCP. Die letzte wichtige Route ist die von dem Node-Server zur Nextcloud. Dafür wird die "nextcloud-node-client" (ncnc) Library genutzt, die mit dem Nextcloudserver über dessen WebDAV Schnittstelle kommuniziert und Dateien runter- oder hochlädt.
 
 - Allgemeiner Text zur Kommunikation
 
@@ -105,22 +105,45 @@ Falls genug Zeit gegen Ende übrig bleibt, wäre eine automatische Klassifizieru
   - Kommunikation zwischen Datenbank und Backend mittels ORM Framework und TCP
   - Kommunikation zwischen Backend und Nextcloud?
 
-
-
-
 #### Darstellung des Ablaufs
 
-![Verteilungsdiagramm](img/doc-ver_Diagramme-Sequenzdiagramm.svg)
+![Sequenzdiagramm](img/doc-ver_Diagramme-Sequenzdiagramm.svg)
 
 #### Schnittstellenübersicht
 
 (Andre)
+**Dokumenten Schnittstelle -- Basisroute: /documents**
+| HTTP |      Route        |      Parameter      |               Body                   | Funktion |
+|--------------|-------------------|---------------------|-----------------------|----------|
+| POST | /create | -- | Neues Dokument inkl. Rohdatei | Dokument zum System hinzufügen |
+| GET | /user | /:userId | -- | Alle Dokumente des Users erhalten |
+| GET | /time | /:userId/:minTime/:maxTime | -- | Alle Dokumente des Users erhalten, die in einem bestimmten Zeitraum hinzugefügt wurden |
+| GET | /keywords | /:userId/:keywords | -- | Alle Dokumente des Users erhalten, die min. eines der Keywords enthalten |
+| GET | /text | /:docId | -- | Den generierten Volltext des Dokuments erhalten |
+| GET  | /content | /:docId | -- | Rohdatei des Dokuments als Base64-String erhalten |
+| GET  | /pdf | /:docId | -- | Generierte PDF-Datei des Dokuments als Base64-String erhalten |
+| POST | /tag | /:docId | Neues Tag-Objekt | Tag für den User erstellen und zum Dokument hinzufügen |
+| PUT | /tag | /:docId | Bestehendes Tag-Objekt | Einen Tag zum Dokument hinzufügen |
+| PUT | /tags | /:docId | Liste mit Ids bestehender Tags | Mehrere Tags zum Dokument hinzufügen |
+| DELETE | /tag | /:docId/:tagId | -- | Einen Tag vom Dokument entfernen |
+| POST | /favorize | /:userId/:docId | -- | Dokument eines Users zu Favoriten hinzufügen |
+| POST | /unfavorize | /:userId/:docId | -- | Dokument eines Users von Favoriten entfernen |
+| DELETE | -- | /:docId | -- | Dokument löschen |
 
-|      Route        |      Parameter      |               Body                   | Funktion |
-|-------------------|---------------------|--------------------------------------|----------|
-||  |  | |
+**Tag Schnittstelle -- Basisroute: /tags**
+| HTTP |      Route        |      Parameter      |               Body                   | Funktion |
+|--------------|-------------------|---------------------|-----------------------|----------|
+| GET | /user | /:userId | -- | Alle Tags des Users erhalten |
+| POST | /create | -- | Neues Tag-Objekt | Neuen Tag erstellen |
+| POST | /update | /:tagId | Tag-Objekt | Tag updaten |
+| DELETE | -- | /:tagId | -- | Tag löschen |
 
-
+**User Schnittstelle -- Basisroute: /user**
+| HTTP |      Route        |      Parameter      |               Body                   | Funktion |
+|--------------|-------------------|---------------------|-----------------------|----------|
+| POST | /register | -- | Nickname, Email und Passwort des neuen Users | User auf der Firebase registrieren und UserId enthalten |
+| POST | /verify | /:token | -- | Usertoken authentifizieren |
+| POST | /update | /:uid | Nickname, Email und Passwort des Users | Daten des Users updaten |
 
 ## Features
 
@@ -128,11 +151,7 @@ Falls genug Zeit gegen Ende übrig bleibt, wäre eine automatische Klassifizieru
 
 ### Dokumentenverwaltung mit Klassifizierung
 
-- Dokumente hochladen
-- Kategorienverwaltung
-- Dokumente in Kategorien ordnen
-- Dashboard Ansicht
-(Andre)
+Zum Verwalten der Dokumente, können diese zuerst in das System hochgeladen werden. Dabei und auch danach können Tags zu diesen hinzugefügt werden, um sie damit zu Kategoriesieren. Dafür kann man Standardtags und selbst erstellte nutzen. Zum Ansehen aller Dokumente des Users gibt es eine Komplettübersicht. Dazu gibt es außerdem ein Dashboard, auf dem alle favorisierten und zuletzt hinzugefügten Dokumente angezeigt werden.
 
 ### OCR Analyse
 (Ken)
@@ -162,9 +181,7 @@ Falls genug Zeit gegen Ende übrig bleibt, wäre eine automatische Klassifizieru
 
 ### Nextcloud
 
-- Datenablage der Original Files
-- Datenablage der generierten PDFs
-(Andre)
+Ein selbst gehosteter Nextcloud Server wird bei diesem Projekt als Webspeicher für die hochgeladenen Dokumente und generierten PDFs genutzt. Zum Hoch- und Runterladen der Dateien wird die WebDAV Schnittstelle der Nextcloud verwendet.
 
 ### Oracle Datenbank
 
@@ -252,7 +269,8 @@ Um dem Nutzer eine gute Usability zu bieten, verwenden wir ein Tag Input Feld. D
 
 - Mit modernen ORM Frameworks sollte man Oracle nicht nutzen
 - Das Erstellen von DB Funktionen mit Oracle ist mühsam (schlechte Debugging Möglichkeiten) 
-
+- Nextcloud evtl. etwas langsam
+- Mehr Sicherheit durch Authentifizierung bei REST-Schnittstellen
 
 
 ## Ausblick
