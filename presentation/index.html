@@ -80,10 +80,9 @@ class: middle
 ### Genutzte Technologien (27 Min)
 - Docker (1 Min) - Ken
 - OCR (8 Min) - Ken
-- Nextcloud (2 Min) - Andre
 - Oracle DB (8 Min) - Ken
-- Node JS (4 Min) - Pia
-- Angular (4 Min) - Pia
+- Node JS (5 Min) - Pia
+- Angular (5 Min) - Pia
 
 ### Fazit (1 Min) - Andre
 
@@ -120,10 +119,10 @@ class: middle, center
 ]
 ---
 ## Systementwurf - Node Backend
-.center[<img src="img/StructureNodeJS.svg" width="85%">]
+.center[<img src="img/Systementwurf_Node.png" width="80%">]
 ---
 ## Systementwurf - Angular Webanwendung
-.center[<img src="img/StructureAngular.svg" width="95%">]
+.center[<img src="img/Systementwurf_Angular.png" width="85%">]
 ---
 ## Systementwurf - Gesamtüberblick
 .center[<img src="img/VerteilungsDiagramm.svg" width="95%">]
@@ -198,12 +197,41 @@ class: middle, center
 
 ---
 ## Node Backend
+.center[<img src="img/Systementwurf_Node.png" width="80%">]
 
 ---
-## Angular Webanwendung
+## Database ORM Adapter
+.center[<img src="img/code/node_database.png" width="100%">]
+---
+## REST Server
+.center[<img src="img/code/node_rest.png" width="100%">]
+---
+## Nextcloud Adapter
+.center[<img src="img/code/node_nextcloud.png" width="100%">]
+---
+## Firebase Adapter
+.center[<img src="img/code/node_firebase.png" width="100%">]
+---
+## Angular - Design
+
+- Navigationsleiste Top Fixed &rarr; Navigation Component
+- Komponenten werden in den Content gerendert
+
+.center[<img src="img/angular_design.jpg" width="100%">]
+
+- Design: Bootstrap
+- Icons: Material Design Library
 
 ---
-## Nextcloud
+## Angular - Authentifizierung
+.center[<img src="img/code/angular_firebase.png" width="100%">]
+
+- Speicherung des User Objekts im Local Storage während der Session
+- Bei Logout löschen des User Objekts
+- Wenn User Objekt vorhanden &rarr; Einblenden von mehr Navigations Optionen
+---
+## Angular - PDF Viewer
+.center[<img src="img/code/angular_pdfViewer.png" width="100%">]
 
 ---
 ## Fazit

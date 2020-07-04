@@ -84,11 +84,11 @@ Falls genug Zeit gegen Ende übrig bleibt, wäre eine automatische Klassifizieru
 
 #### Backend
 
-![Node Struktur](img/StructureNodeJS.svg)
+![Node Struktur](img/Systementwurf_Node.png)
 
 #### Frontend
 
-![Structure Angular](img/StructureAngular.svg)
+![Structure Angular](img/Systementwurf_Angular.png)
 
 #### Gesamtüberblick
 
