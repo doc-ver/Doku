@@ -148,11 +148,6 @@ Es gibt drei wichtige Kommunikationsrouten. Die erste ist zwischen dem Frontend 
 
 ## Features
 
-### Nutzereinstellungen
-
-- Nutzer können sich registrieren sowie ihre Nutzerdaten aktualisieren
-- Jeder Nutzer hat die Möglichkeit eigene Kategorien anzulegen
-
 ### Dokumentenverwaltung mit Klassifizierung
 
 - Nutzer können Dokumente hochladen um diese zu verwalten
@@ -289,3 +284,5 @@ Um dem Nutzer eine gute Usability zu bieten, verwenden wir ein Tag Input Feld. D
 - Es wäre möglich, die Firebase mit einer eigenen Authentifizierungsmöglichkeit zu ersetzen
 
 Als Erweiterung des Systems, wäre eine automatische Klassifizierung denkbar, die hochgeladene Dokumente automatisch in die passende Kategorie einsortieren kann. Außerdem wäre eine Schnittstelle mit erweiternder Funktionalität möglich, die tiefere Analysen der Dokumente durchführt und es ermöglicht, Zusatzmodule zu implementieren, welche die Daten analysieren. Ein Beispiel dafür wäre ein automatisches Fahrtenbuch, das aus Daten von Tankquittungen erstellt wird.
+
+- Dokumente die ausstehend sind werden automatisch refresht - mit Hilfe von Websockets 
