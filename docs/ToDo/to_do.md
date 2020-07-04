@@ -5,9 +5,7 @@
 
 - Offline Konzept aufschreiben
 
-- Bugfixing View
-
-- Detailansicht analysierter Dokumente testen
+- Anzeige der Detailansicht fixen
 
 - Generelles Code Refactoring
 
@@ -15,7 +13,7 @@
 
 #### Dokumentation:
 
-- Kapitel fertigschreiben
+- Dokumentation fertigschreiben
 - Präsentation vorbereiten
 
 
