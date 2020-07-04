@@ -286,3 +286,4 @@ Um dem Nutzer eine gute Usability zu bieten, verwenden wir ein Tag Input Feld. D
 Als Erweiterung des Systems, wäre eine automatische Klassifizierung denkbar, die hochgeladene Dokumente automatisch in die passende Kategorie einsortieren kann. Außerdem wäre eine Schnittstelle mit erweiternder Funktionalität möglich, die tiefere Analysen der Dokumente durchführt und es ermöglicht, Zusatzmodule zu implementieren, welche die Daten analysieren. Ein Beispiel dafür wäre ein automatisches Fahrtenbuch, das aus Daten von Tankquittungen erstellt wird.
 
 - Dokumente die ausstehend sind werden automatisch refresht - mit Hilfe von Websockets 
+- Ausloggen beim ändern der Email könnte umgangen werden, wenn man sich ein Passwort bestätigen lässt um den Nutzer programmatisch wieder einzuloggen
