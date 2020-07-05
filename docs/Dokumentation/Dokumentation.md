@@ -61,7 +61,7 @@ Das System soll digitalisierte Dokumente, wie z.B. Fotos oder Scans verwalten k√
 
 #### ER Diagramm
 
-![ER Diagramm](img/doc-ver_Diagramme-ER-Diagramm.svg)
+![ER Diagramm](img/ERDiagramm.png)
 
 
 #### Stored Functions
@@ -90,7 +90,7 @@ Das System soll digitalisierte Dokumente, wie z.B. Fotos oder Scans verwalten k√
 
 #### Gesamt√ºberblick
 
-![Verteilungsdiagramm](img/doc-ver_Diagramme-Verteilungsdiagramm.svg)
+![Verteilungsdiagramm](img/Verteilungsdiagramm.png)
 
 ### Kommunikationsentwurf
 
@@ -98,7 +98,7 @@ Es gibt drei wichtige Kommunikationsrouten. Die erste ist zwischen dem Frontend 
 
 #### Darstellung des Ablaufs
 
-![Sequenzdiagramm](img/doc-ver_Diagramme-Sequenzdiagramm.svg)
+![Sequenzdiagramm](img/Ablaufdiagramm.png)
 
 #### Schnittstellen√ºbersicht
 
