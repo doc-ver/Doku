@@ -5,6 +5,7 @@
     <title>Doc Ver</title>
     <meta charset="utf-8">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
     <style>
         @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
         @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
@@ -138,9 +139,27 @@ class: middle, center
 ---
 ## Systementwurf - Node Backend
 .center[<img src="img/Systementwurf_Node.png" width="80%">]
+
+???
+
+- Modulare Aufteilung
+	- Components &rarr; Alle wichtigen Module und Adapter
+- Logging implementiert für bessere Auswertung nach Deployment auf Server
+- Datenbanklogik mit ORM und Model/Controller
+- REST Routen greifen direkt auf DB Funktionalität zu	
 ---
 ## Systementwurf - Angular Webanwendung
 .center[<img src="img/Systementwurf_Angular.png" width="85%">]
+
+???
+
+- Inhalte eigene Komponenten
+- Navigation auch eigener Komponent
+- App Komponent greift auf Navigations Komponent zu &rarr; Inhaltskomponenten werden dynamisch mit Routing unter die Nav geladen
+- Navigationskomponent lädt dabei die Routen
+- Es gibt einen Notification Service &rarr; zeigt Statusmeldungen an
+- Es gibt einen globalen Service der globale Variablen und Funktionen für alle Komponenten enthält
+
 ---
 ## Systementwurf - Gesamtüberblick
 .center[<img src="img/VerteilungsDiagramm.svg" width="95%">]
@@ -159,6 +178,23 @@ class: middle, center
 .center[<img src="img/Sequenzdiagramm.svg" width="95%">]
 ---
 ## Offline Nutzung
+
+.content-middle[
+- Angular Progressive Webapp
+- Funktioniert mit Service Worker
+	- Dieser cached alle HTML und JS Dateien / fängt Requests ab
+- Volltextvorschau von einmal geöffneten Dokumenten wird im Cache abgelegt
+- Im Offlinemodus kann die Volltextvorschau aus dem Cache geladen werden
+- Funktionen wir Dokumente hochladen und Klassifizierung mit Kategorien nicht möglich
+]
+
+???
+
+- Nur Konzeption abgeschlossen
+- lange Probleme mit dem Service Worker
+- Begrenzte Zeit auf Grund des verkürzten Semesters
+- Hoher Workload in anderen Modulen
+- Fokus lag auf der Funktionalität der restlichen Software &rarr; Daher geringere Priorität
 
 ---
 ## Features
@@ -217,18 +253,54 @@ class: middle, center
 ## Node Backend
 .center[<img src="img/Systementwurf_Node.png" width="80%">]
 
+???
+
+- Hier nochmal das Strukturdiagramm von vorhin
+- Ich konzentriere mich auf die Komponenten im blauen Kasten und gehe für diese genauer ins Detail
+- Dabei erläutere ich was diese machen und zeige Code Beispiele
+
 ---
 ## Database ORM Adapter
 .center[<img src="img/code/node_database.png" width="100%">]
+
+???
+
+- Die Datenbankanbindung ist mit dem Framework Sequelize umgesetzt
+- Auf Grund der Oracle Datenbank haben wir einen Fork der Version 3 nutzen müssen
+- Dieses Code Snippet zeigt das Beispiel einer Model Definition am Beispiel der Kategorien
+- Außerdem wird die Zuweisung als Association zwischen Kategorie und Dokument gezeigt (Many To Many / n:m)
+- Nach der Definition und Verbindung zur Datenbank kann man mit den Controller Funktionen schnell mit der DB interagieren
 ---
 ## REST Server
 .center[<img src="img/code/node_rest.png" width="100%">]
+
+???
+
+- Für den REST Server haben wir express und body-parser genutzt. Dabei haben wir die Routen wie eben erwähnt in die 3 Basisrouten unterteilt
+- Dieses Beispiel zeigt die Routen für die Kategorien.
+- Dabei rufen die Routen direkt die Funktion des Datenbank Controllers von Sequelize auf
 ---
 ## Nextcloud Adapter
 .center[<img src="img/code/node_nextcloud.png" width="100%">]
+
+???
+- Für die Anbindung an die Nextcloud verwendet wir das modul nextcloud-node-client
+- Mit diesem ist es sehr einfach eine Verbindung zur Nextcloud herzustellen
+- Dieses Snippet zeigt das laden einer Datei aus der Nextcloud mit einem Pfad
 ---
 ## Firebase Adapter
 .center[<img src="img/code/node_firebase.png" width="100%">]
+
+???
+
+- Bei der Firebase wird grundsätzlich die Verwendung zwischen Admin und Client Bibliothek unterschieden
+- Admin hat Funktionen wie verifyUser, registerUser
+- Client hat Funktionen wie LoginUser, sendPasswordReset 
+- Für die Verwendung der Firebase nutzen wir eine Admin Library im Backend und eine Client Library im Frontend (zu Client sag ich gleich nochmal was genauer)
+- Um das Admin SDK zu nutzen wird die Lib firebase-admin benötigt
+- Diese wird mit dem Dienstaccount (Json Datei) registriert &rarr; Zugänglich im Firebase Account
+- Anschließend können auf das auth() Objekt Funktionen aufgerufen werden
+- Dieses Beispiel zeigt die Nutzerregistrierung
 ---
 ## Angular - Design
 
@@ -240,6 +312,12 @@ class: middle, center
 - Design: Bootstrap
 - Icons: Material Design Library
 
+???
+- Response Layout mit fixierter oberer Navigationsleiste
+- Funktioniert für Smartphones, Desktop PC und Tablet Ansicht, wobei die Smartphone Ansicht nicht empfohlen wird (auf Grund der vielen Tabellen)
+
+- Für Bootstrap haben wir die normale Bootstrap CSS implementiert sowie die NG Bootstrap Bibliothek für Angular (für bestimmte Komponenten)
+- Da Bootstrap keine Icon Bib enthält, haben wir die Icons aus der Material Design Lib von Google verwendet
 ---
 ## Angular - Authentifizierung
 .center[<img src="img/code/angular_firebase.png" width="100%">]
@@ -247,33 +325,61 @@ class: middle, center
 - Speicherung des User Objekts im Local Storage während der Session
 - Bei Logout löschen des User Objekts
 - Wenn User Objekt vorhanden &rarr; Einblenden von mehr Navigations Optionen
+
+???
+
+- Für die Authentifizierung im Client die Client SDK von Firebase eingebunden (Lib @angular/fire)
+- Diese muss auch initialisiert werden mit den Informationen über das Projekt
+- Dies geschieht in Angular innerhalb des App Komponenten
+- Anschließend kann das AngularFireAuth Objekt in jedem Komponenten importiert und genutzt werden
+- Auf dieses kann man die Funktionen aufrufen
 ---
 ## Angular - PDF Viewer
 .center[<img src="img/code/angular_pdfViewer.png" width="100%">]
 
+???
+
+- Bei dem PDF Viewer haben wir die Bibliothek ng2-pdfjs-viewer verwendet
+- Dafür haben wir uns entschieden da die HTML5 Embed Funktion von PDFs keine Suchfunktion hat 
+- Bei dieser Bibliothek kann man dem HTML objekt einfach mit der # eine ID geben
+- Diese kann der Komponent als ViewChild implementieren
+- Dadurch kann dieser auf das DOM Element zugreifen und die PDFSource setzen
+- In diesem Beispiel wird die PDF vom Server abgerufen, zu Blob Format umgewandelt und in die Property "pdfSrc" gesetzt
 ---
 ## Fazit - Projekt
 
-- Solides System rotz begrenzter Zeit
+.content-middle[
+- Solides System trotz begrenzter Zeit
+
 - Gute Teamarbeit, Absprachen und Zeiteinteilung
+]
 
 ---
 ## Fazit - Technik
 
+.content-middle[
 - Mit modernen ORM Frameworks sollte man Oracle nicht nutzen
+
 - Das Erstellen von DB Funktionen mit Oracle ist mühsam (schlechte Debugging Möglichkeiten)
-- &rarr; Anderes DBMS hätte gewählt werden sollen
+	&rarr; Anderes DBMS hätte gewählt werden sollen
+
 - Nextcloud evtl. etwas langsam
+]
 
 ---
 ## Ausblick - Optimierungen
 
+.content-middle[
 - Mehr Sicherheit der REST-Schnittstellen durch Authentifizierung 
-- Firebase mit eigener Authentifizierungsmöglichkeit ersetzen
-- Satzzeichen als Wörter behandeln &rarr; Suche verbessern
-- Analysestatus automatisch aktualisieren (Websockets)
-- Ausloggen beim Ändern der Email durch Passwortbestätigung umgehen
 
+- Firebase mit eigener Authentifizierungsmöglichkeit ersetzen
+
+- Satzzeichen als Wörter behandeln &rarr; Suche verbessern
+
+- Analysestatus automatisch aktualisieren (Websockets)
+
+- Ausloggen beim Ändern der Email durch Passwortbestätigung umgehen
+]
 ???
 
 - Satzzeichen derzeit mit an Wörtern gespeichert
@@ -281,9 +387,14 @@ class: middle, center
 ---
 ## Ausblick - Optimierungen
 
+.content-middle[
 - Automatische Klassifizierung
+
 - Schittstellen für Erweiterungen anbieten
 	- Analyse gesammelter Daten damit
+	
+- Offlinekonzept implementieren
+]
 
 ???
 

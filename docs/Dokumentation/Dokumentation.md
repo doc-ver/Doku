@@ -142,7 +142,11 @@ Es gibt drei wichtige Kommunikationsrouten. Die erste ist zwischen dem Frontend 
 
 ### Offline Nutzung
 
-- Konzeption zur Offline Nutzung ergänzen (Pia)
+Ursprünglich geplant war ein Konzept zur Offlinenutzung der App. Dies sollte durch die Entwicklung der Webanwendung als Progressive Web App umgesetzt werden. Dabei wird bei Angular ein Service Worker implementiert, welcher konfigurierbar ist. Dieser ist dazu in der Lage die Anwendung zu cachen und eventuelle HTTP Anfragen abzufangen und zu cachen. Dabei war geplant die Liste der abgefragten Dokumente im Cache abzulegen. Während der Nutzer online die Anwendung nutzt werden alle Aufrufe zur Detailansicht eines Dokuments dafür genutzt die Volltextvorschau im Cache abzulegen. Wenn der Nutzer die Anwendung dann offline nutzt, kann von allen vorher aufgerufenen Dokumenten , die Volltextvorschau weiter angezeigt werden. Features wie das Hochladen der Dokumente oder das Klassifizieren mit Hilfe von Kategorien soll im Offline Modus nicht möglich sein.
+
+Auf Grund von langanhaltender Probleme mit dem Service Workers in Verbindung mit der begrenzten Zeit auf Grund des wegen Corona verkürzten Semesters, ist es uns leider nicht gelungen das Offline Konzept umzusetzen, da wir uns auh dazu entschlossen haben dieses nicht nur halb zu implementieren. Außerdem hat auch der hohe Workload in anderen Modulen dazu geführt, dass wir dieser Funktionalität eine geringere Priorität zugeteilt haben. An Stelle dessen haben wir uns darauf fokussiert, dass alle anderen Softwarebestandteile einwandfrei wie geplant funktionieren.
+
+
 
 ## Features
 
@@ -249,7 +253,7 @@ Das Design der Webanwendung basiert grundsätzlich auf dem Bootstrap Framework i
 
 Für die Nutzerauthentifizierung in der Webanwendung nutzen wir die clientseitige Firebasebibliothek, welche z.B. Funktionen wie Login und Passwort zurücksetzen anbietet. Dabei erstellen wir uns einen Eintrag im Local Storage, wenn der Nutzer eingeloggt ist, um diesen eingeloggt zu lassen, sollte die Seite neu geladen werden. Der Nutzer wird dabei automatisch ausgeloggt, sollte das Token der Firebase auslaufen und somit kann der Nutzer nicht dauerhaft eingeloggt bleiben.
 
-- [firebase](https://www.npmjs.com/package/firebase)
+- [@angular/fire](https://www.npmjs.com/package/@angular/fire)
 
 #### Dokumentendetail Anzeige
 
@@ -269,19 +273,13 @@ Um dem Nutzer eine gute Usability zu bieten, verwenden wir ein Tag Input Feld. D
 
 ## Fazit
 
-- Mit modernen ORM Frameworks sollte man Oracle nicht nutzen
-- Das Erstellen von DB Funktionen mit Oracle ist mühsam (schlechte Debugging Möglichkeiten) 
-- Nextcloud evtl. etwas langsam
-- Mehr Sicherheit durch Authentifizierung bei REST-Schnittstellen
+Schlussendlich kann man sagen, dass innerhalb dieses Projekts ein solides System entstanden ist, trotz der begrenzten Zeit auf Grund des wegen Corona verkürzten Semesters. Dies ist auf die gute Teamarbeit mit fester Zeiteinteilung und regelmäßigen Absprachen zurückzuführen. Dennoch sind wir zu dem Schluss gekommen, dass es nicht sinnvoll und oftmals nicht zielführend ist ein modernes ORM Framework in Zusammenhang mit einer Oracle Datenbank zu nutzen. Außerdem lässt sich sagen, dass das Erstellen von Datenbank Funktionen innerhalb einer Oracle Datenbank sehr mühsam ist. Dies liegt unter anderem auch an den schlechten Debugging Möglichkeiten. Außerdem haben wir festgestellt, dass die Anbindung an Nextcloud als WebDAV Dienst an einigen stellen hakt und daher einzelne Funktionen etwas langsam sind.
 
 
 ## Ausblick
 
-- Satzzeichen könnten als Wörter behandelt werden um die Suche zu verbessern
-	- Derzeit Satzzeichen am Wort direkt und daher evtl. nicht als Suchergebnis
-- Es wäre möglich, die Firebase mit einer eigenen Authentifizierungsmöglichkeit zu ersetzen
+Im derzeitigen Stand der Suche nach Keywords werden Satzzeichen nicht vom Wort getrennt. Um die Suche zu verbessern wäre es daher möglich Satzzeichen ebenfalls als Wörter zu behandeln. Dadurch könnte effizienter gesucht werden, da mehr Suchergebnisse erzielt werden können. Weiterhin könnte die Authentifizierung erweitert werden. Dabei wäre zum einen denkbar die Authentifizierung mit Hilfe der Firebase mit eigener eigenen Lösung zu ersetzen und zum anderen könnte eine höhere Sicherheit der REST Schnittstellen durch Authentifizierung erreicht werden. 
 
-Als Erweiterung des Systems, wäre eine automatische Klassifizierung denkbar, die hochgeladene Dokumente automatisch in die passende Kategorie einsortieren kann. Außerdem wäre eine Schnittstelle mit erweiternder Funktionalität möglich, die tiefere Analysen der Dokumente durchführt und es ermöglicht, Zusatzmodule zu implementieren, welche die Daten analysieren. Ein Beispiel dafür wäre ein automatisches Fahrtenbuch, das aus Daten von Tankquittungen erstellt wird.
+Als Erweiterung des Systems wäre außerdem eine automatische Klassifizierung denkbar, die hochgeladene Dokumente automatisch in die passende Kategorie einsortieren kann. Außerdem wäre eine Schnittstelle mit erweiternder Funktionalität möglich, die tiefere Analysen der Dokumente durchführt und es ermöglicht, Zusatzmodule zu implementieren, welche die Daten analysieren. Ein Beispiel dafür wäre ein automatisches Fahrtenbuch, das aus Daten von Tankquittungen erstellt wird.
 
-- Dokumente die ausstehend sind werden automatisch refresht - mit Hilfe von Websockets 
-- Ausloggen beim ändern der Email könnte umgangen werden, wenn man sich ein Passwort bestätigen lässt um den Nutzer programmatisch wieder einzuloggen
+Auch die Benutzerusability könnte verbessert werden, indem man z.B. Dokumente, welche austehend sind automatisch aktualisiert, ohne dies manuell anzufragen. Dies könnte beispielsweise mit Hilfe von Websockets implementiert werden. Außerdem könnte das Ausloggen beim Ändern der E-Mail durch eine Passwortbestätigung vom Nutzer umgangen werden. Diese würde dann genutzt werden, um den Nutzer nahtlos wieder einzuloggen. Da das Konzept der Offline Nutzung im derzeitigen Stand nicht umgesetzt werden konnte, wäre dies auch eine simple Erweiterungsmöglichkeit um die Nutzerakzeptanz zu erhöhen.
