@@ -33,6 +33,11 @@
 			margin-top: 80px;
 		}
     </style>
+	<!--
+	Styles:
+	<link rel="stylesheet" href="presla.css">
+	Komplexer aber huebscher: https://1-2-3.github.io/remark-it/index-en_US.html#1
+	-->
 </head>
 
 <body>
@@ -90,6 +95,19 @@ class: middle
 ---
 ## Idee
 
+- Digitalisierte Dokumente verwalten
+- User lädt Dokument hoch &rarr; Analyse mit OCR
+- Dokumente kategorisieren
+- Suche über Dokumentenname & -inhalt
+- Mobil benutzbar
+
+
+- Von breiter Personengruppe benutzbar
+- Privatpersonen oder (kleine) Organisationen
+	- Besitzen Geräte mit Browser
+	- Wollen Dokumente digital verwalten
+	- Wollen unterwegs Überblick über Dokumente
+
 ---
 class: middle, center
 # Live Demo
@@ -130,11 +148,11 @@ class: middle, center
 ## Kommunikation - Allgemein
 
 .content-middle[
-1. Frontend &rlarr; Backend (HTTP)
+1. Frontend &rlarr; Backend (HTTP &rarr; REST)
 
 2. Backend &rlarr; Datenbank (TCP)
 
-3. Backend &rlarr; Nextcloud (HTTP)
+3. Backend &rlarr; Nextcloud (HTTP &rarr; WebDAV)
 ]
 ---
 ## Kommunikation - Ablauf
@@ -234,10 +252,43 @@ class: middle, center
 .center[<img src="img/code/angular_pdfViewer.png" width="100%">]
 
 ---
-## Fazit
+## Fazit - Projekt
+
+- Solides System rotz begrenzter Zeit
+- Gute Teamarbeit, Absprachen und Zeiteinteilung
 
 ---
-## Ausblick
+## Fazit - Technik
+
+- Mit modernen ORM Frameworks sollte man Oracle nicht nutzen
+- Das Erstellen von DB Funktionen mit Oracle ist mühsam (schlechte Debugging Möglichkeiten)
+- &rarr; Anderes DBMS hätte gewählt werden sollen
+- Nextcloud evtl. etwas langsam
+
+---
+## Ausblick - Optimierungen
+
+- Mehr Sicherheit der REST-Schnittstellen durch Authentifizierung 
+- Firebase mit eigener Authentifizierungsmöglichkeit ersetzen
+- Satzzeichen als Wörter behandeln &rarr; Suche verbessern
+- Analysestatus automatisch aktualisieren (Websockets)
+- Ausloggen beim Ändern der Email durch Passwortbestätigung umgehen
+
+???
+
+- Satzzeichen derzeit mit an Wörtern gespeichert
+
+---
+## Ausblick - Optimierungen
+
+- Automatische Klassifizierung
+- Schittstellen für Erweiterungen anbieten
+	- Analyse gesammelter Daten damit
+
+???
+
+- automatische Klassifizierung mit Machine Learning?
+- Analysebsp: automatisches Fahrtenbuch
 
 ---
 class: middle, center
