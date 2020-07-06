@@ -5,7 +5,7 @@ services:
     build: node_server/.
     ports:
       - 4000:4000
-      - 9000:9000
+      - 1234:1234
   frontend:
     build: webapp/.
     ports:

@@ -209,12 +209,16 @@ Um das Backend mit der Datenbank zu verwenden wird das ORM Framework `Sequelize`
 
 - [oracledb](https://www.npmjs.com/package/oracledb)
 
+
+
 #### REST Server
 
 Damit die Webanwendung mit dem Backend kommunizieren kann arbeiten wir mit REST Routen. Dafür ist auch eine Middleware notwendig, welche den Request Body parsen kann. Einige REST Routen sind dabei so definiert, dass diese direkt die Funktionen aus den Datenbank Controllern aufrufen, womit es sehr einfach ist Datenbankoperationen aus der Webanwendung zu triggern.
 
 - [express ](https://www.npmjs.com/package/express)
 - [body-parser](https://www.npmjs.com/package/body-parser)
+
+
 
 #### Firebase Adapter
 
