@@ -35,10 +35,10 @@
 20. Kategorie Übersicht erklären &rarr; Oben Standard Kategorien (nicht durch Nutzer anpassbar) / Unten Nutzerkategorien
 21. Kategorie editieren &rarr; Zu Dokumententabelle wechseln und zeigen das Kategorie aktualisiert angezeigt wird
 22. Kategorie erstellen &rarr; Zu Dokumententabelle wechseln und zeigen das neue Kategorie auswählbar ist &rarr; Kategorie zu Dokument hinzufügen
-23. Kategorie löschen &rarr; Zu Dokumentenrabelle wechseln und zeigen dass die Katgorie vom Dokument verschwunden ist
+23. Kategorie löschen &rarr; Zu Dokumententabelle wechseln und zeigen dass die Kategorie vom Dokument verschwunden ist
 24. Dokument mit Kategorien löschen &rarr; Zeigen das Dokument gelöscht wurde
 25. Zu Dashboard Ansicht wechseln und aktuelle View darstellen
 26. Mobile Ansicht einstellen und zeigen das Smartphone und Tablet View möglich sind
-    - Mobile View nur auf Home Seite zeigen
+    - Mobile View auf Home Seite zeigen
     - Auf Tablet View wechseln  &rarr; Restliche App einmal durchklicken (App hauptsächlich für Tablet und Desktop optimiert)
 

@@ -5,6 +5,10 @@
 
 **Studierende:** Ken Madlehn, André Grellmann, Pia Schreiner
 
+**Link zu GitHub Pages**: https://doc-ver.github.io/Doku/
+
+**Source Code:** https://github.com/doc-ver
+
 
 
 ## Einleitung
@@ -96,9 +100,13 @@ Das System soll digitalisierte Dokumente, wie z.B. Fotos oder Scans verwalten k�
 
 Es gibt drei wichtige Kommunikationsrouten. Die erste ist zwischen dem Frontend und dem Backend. Das Backend stellt dafür einige REST-Schnittstellen zur Verfügung. Eine Übersicht über diese ist weiter unten im Abschnitt "Schnittstellenübersicht" zu finden. Die zweite wichtige Kommunikationsroute ist die für die Kommunikation zwischen dem Node-Server und der Datenbank. Dafür wird das ORM Framework Sequelize genutzt. Die Kommunikation zwischen diesem und dem DBMS läuft über TCP. Die letzte wichtige Route ist die von dem Node-Server zur Nextcloud. Dort liegen alle Dokumente, welche verwaltet werden. Dabei wird über die WebDAV Schnittstelle kommuniziert und Dateien hoch- oder heruntergeladen.
 
+
+
 #### Darstellung des Ablaufs
 
 ![Sequenzdiagramm](img/Ablaufdiagramm.png)
+
+
 
 #### Schnittstellenübersicht
 
@@ -173,6 +181,7 @@ Auf Grund von langanhaltender Probleme mit dem Service Workers in Verbindung mit
 - Ausführliche Stichpunkte formulieren (Ken)
 
 
+
 ## Genutzte Technologien
 
 ### Docker als Environment
@@ -209,34 +218,57 @@ Um das Backend mit der Datenbank zu verwenden wird das ORM Framework `Sequelize`
 
 - [oracledb](https://www.npmjs.com/package/oracledb)
 
+Eine beispielhafte Anwendung der Sequelize Oracle Bibliothek findet man im folgenden Beispiel. Dabei ist eine Definition des Models `Tag` zu sehen. Dieses stellt die Datenbanktabelle `tags` dar. Anschließend wird eine n:m Beziehung zwischen Dokumenten und Tags erstellt. Darunter ist beispielhaft zu sehen, wie man mit Sequelize auf ein Model eine Suchquery ausführen kann. In diesem Falle werden alle Dokumente gesucht, welche zu einem Nutzer gehören. Rückgabe ist ein Array aus JSON Objekten, welche die Dokumente darstellen, welche gefunden wurden. Durch das Inkludieren des Tag Models, besitzt jedes Dokumentenobjekt ein Subarray in dem alle Tags enthalten sind.
 
+![CodeSnippet - Sequelize ORM](img/code/node_database.png)
 
 #### REST Server
 
-Damit die Webanwendung mit dem Backend kommunizieren kann arbeiten wir mit REST Routen. Dafür ist auch eine Middleware notwendig, welche den Request Body parsen kann. Einige REST Routen sind dabei so definiert, dass diese direkt die Funktionen aus den Datenbank Controllern aufrufen, womit es sehr einfach ist Datenbankoperationen aus der Webanwendung zu triggern.
+Damit die Webanwendung mit dem Backend kommunizieren kann arbeiten wir mit REST Routen. Dafür ist auch eine Middleware notwendig, welche den Request Body parsen kann. Einige REST Routen sind dabei so definiert, dass diese direkt die Funktionen aus den Datenbank Controllern aufrufen, womit es sehr einfach ist Datenbankoperationen aus der Webanwendung zu triggern. Folgende Libraries für Node werden verwendet:
 
 - [express ](https://www.npmjs.com/package/express)
 - [body-parser](https://www.npmjs.com/package/body-parser)
 
+Im nachfolgenden Snippet ist der Aufbau des REST Servers verdeutlicht. Zunächst wird dabei mit Express und dem Bodyparsers der Server initialisiert. Diesem werden dann verschiedene Routen zugewiesen. Im Beispiel sind die Routen für die Kategorien zu sehen. Dabei kann direkt der Tag Controller eingebunden werden. Dadurch lassen sich die Datenbankfunktionen direkt über die REST Routen aufrufen. Schlussendlich wird dann der Server gestartet.
 
+![CodeSnippet - REST Server](img/code/node_rest.png)
 
 #### Firebase Adapter
 
-Da die Anwendung nutzerbasiert funktionieren soll, ist eine Authentifizierungsmöglichkeit notwendig. Diese ist mit Hilfe von Firebase umgesetzt. Dies ist ein Google Service, zur Nutzerverwaltung und Authentifizierung. Auf der Serverseite wird dabei das Admin SDK für Node verwendet, um Funktionen, wie z.B die Nutzerverifizierung oder die Registrierung neuer Nutzer, durchführen zu können.
+Da die Anwendung nutzerbasiert funktionieren soll, ist eine Authentifizierungsmöglichkeit notwendig. Diese ist mit Hilfe von Firebase umgesetzt. Dies ist ein Google Service, zur Nutzerverwaltung und Authentifizierung. Für die Funktionalität der Firebase gibt es die Admin und die Client Lib. Auf der Serverseite wird dabei das Admin SDK für Node verwendet, um Funktionen, wie z.B die Nutzerverifizierung oder die Registrierung neuer Nutzer, durchführen zu können. Folgende Libraries für Node werden verwendet:
 
 - [firebase-admin](https://www.npmjs.com/package/firebase-admin)
 
+Für die Ausführung der Admin Library ist es notwendig sich im Firebase Account ein Dienstkonto anzulegen sowie einen privaten Schlüssel dafür zu generieren. Anschließend kann mit diesem eine Verbindung hergestellt werden. Der folgende Screenshot zeigt die Ansicht in der Einstellungskonsole der Firebase:
+
+![Firebase Settings](img/firebase_screen_admin.jpg)
+
+Nachdem ein privater Schlüssel exportiert wurde, kann dieser im Projektorder abgelegt werden und der Pfad kann genutzt werden um die Verbindung mit dem Server zu initialisieren. Anschließend kann das Authentifizierungsobjekt der genutzt werden, um Funktionen wie z.B die Nutzerregistrierung auszuführen. Das folgende Code Snippet zeigt eine Initialisierung der Verbindung zum Server und eine Anschließende Registrierung eines Nutzers. Dieser wird zunächst mit Hilfe der Firebase registriert und anschließend in der Datenbank abgelegt.
+
+![CodeSnippet - FirebaseAdmin](img/code/node_firebase.png)
+
+Nachdem Nutzer registriert wurden, können diese auch in der Authentifizierungsübersicht im Firebase Account eingesehen werden. Dort wird eine Liste von E-Mail, User ID sowie dem letzten Login angezeigt wie nachfolgend zu sehen ist. In dieser Ansicht können Nutzer auch manuell aktiviert, deaktiviert oder gelöscht werden.
+
+![Firebase - Nutzerübersicht](img/firebase_screen.JPG)
+
 #### Nextcloud Adapter
 
-Da in der Datenbank nur der Dokumentenpfad gespeichert wird, ist es notwendig zusätzlich einen WebDAV Dienst zu nutzen, welcher die hochgeladenen Dateien nutzerbasiert speichert. Dabei haben wir uns für den Dienst Nextcloud entschieden. Dieser bietet eine einfache Client API mit Hilfe dessen Dateien erstellt, ausgelesen und gelöscht werden können.
+Da in der Datenbank nur der Dokumentenpfad gespeichert wird, ist es notwendig zusätzlich einen WebDAV Dienst zu nutzen, welcher die hochgeladenen Dateien nutzerbasiert speichert. Dabei haben wir uns für den Dienst Nextcloud entschieden. Dieser bietet eine einfache Client API mit Hilfe dessen Dateien erstellt, ausgelesen und gelöscht werden können. Folgende Libraries für Node werden verwendet:
 
 - [nextcloud-node-client](https://www.npmjs.com/package/firebase-admin)
-
 - [file-type](https://www.npmjs.com/package/file-type)
+
+Im Rootverzeichnis unseres Nextcloud Speichers existiert der Ordner `userfiles`. Darin wird für jeden Nutzer, welche Dokumente hochlädt ein Ordner angelegt, welcher den Namen der User ID trägt. In diesem Ordner werden die Dateien abgelegt. Der Name der Datei besteht dabei aus dem Dateinamen sowie einer UUID. Die analysierte Datei wird als PDF auch in diesem Ordner abgelegt. Der folgende Screenshot zeigt einen Ausschnitt einer User Ordners in der Nextcloud:
+
+![Nextcloud - Screen](img/nextcloud_screen.jpg)
+
+Für die Anbindung an die Nextcloud muss zunächst ein Client Objekt mit URL, Nutzername sowie dem Passwort initialisiert werden. Anschließend lassen sich auf das Client Objekt Funktionen ausführen. Im nachfolgenden Beispiel ist der Abruf einer Datei zu sehen, welcher in der Nextcloud liegt. Um diese Datei abzurufen, wird der Dateipfad benötigt, welcher in der Datenbank gespeichert ist.
+
+![CodeSnippet - Nextcloud](img/code/node_nextcloud.png)
 
 #### Logging
 
-Um nach dem Deploy auf die Umgebung einfach Fehler finden zu können, wurde ein Logging System implementiert. Dabei gibt es drei verschiedene Dateien (Info, Error, Debug), welche mit Hilfe einer REST Route erreichbar sind und welche den Loginhalt basiert auf Logleveln ausgeben können.
+Um nach dem Deploy auf die Umgebung einfach Fehler finden zu können, wurde ein Logging System implementiert. Dabei gibt es drei verschiedene Dateien (Info, Error, Debug), welche mit Hilfe einer REST Route erreichbar sind und welche den Loginhalt basiert auf Logleveln ausgeben können. Folgende Libraries für Node werden verwendet:
 
 - [fs](https://www.npmjs.com/package/fs)
 - [util](https://www.npmjs.com/package/util)
@@ -245,25 +277,43 @@ Um nach dem Deploy auf die Umgebung einfach Fehler finden zu können, wurde ein 
 
 ### Angular
 
-#### Design
+#### Design und Routing
 
-Das Design der Webanwendung basiert grundsätzlich auf dem Bootstrap Framework in der Version 4. Da dieses aber keine Icons enthält sowie einige andere nützliche Komponenten nutzen wir zusätzlich die Angular Material Bibliothek, dessen Icons wir verwenden. Die Anwendung ist dabei komplett responsiv und passt sich auf alle Endgeräte mit der Größe an. Um das Design modern wirken zu lassen, werden bei allen Aktionen mit dem Backend Push Notifications angezeigt, welche dem Nutzer den Status der Aktion mitteilen. Diese können beliebig platziert werden, je nachdem ob gerade ein Modal geöffnet ist, oder nicht.
+Das Design der Webanwendung basiert grundsätzlich auf dem Bootstrap Framework in der Version 4. Da dieses aber keine Icons enthält sowie einige andere nützliche Komponenten nutzen wir zusätzlich die Angular Material Bibliothek, dessen Icons wir verwenden. Die Anwendung ist dabei komplett responsiv und passt sich auf alle Endgeräte mit der Größe an. Um das Design modern wirken zu lassen, werden bei allen Aktionen mit dem Backend Push Notifications angezeigt, welche dem Nutzer den Status der Aktion mitteilen. Diese können beliebig platziert werden, je nachdem ob gerade ein Modal geöffnet ist, oder nicht. Folgende Libraries werden dabei für das Design genutzt:
 
 - [@ng-bootstrap/ng-bootstrap](https://www.npmjs.com/package/@ng-bootstrap/ng-bootstrap)
 - [@angular/material](https://www.npmjs.com/package/@angular/material)
 - [ngx-toastr](https://www.npmjs.com/package/ngx-toastr)
 
+Die Ansicht der Anwendung ist dabei grundsätzlich zweigeteilt. Oben auf Seite befindet sich eine Navigationsleiste, welche fix ist und nicht mitscrollt. Darunter befindet sich eine Content View. Die Navigationsleiste ist über einen Navigationskomponenten umgesetzt, welcher bei App Start geladen wird. Basierend vom Navigationskomponent werden die anderen Inhaltskomponenten mit Hilfe des Angular Routings in die Content View hineingerendert, sodass immer der Navigationskomponent sowie der jeweilige Inhaltskomponent aktiv ist. 
+
+![Angular - Design](img/angular_design.JPG)
+
 #### Authentifizierung
 
-Für die Nutzerauthentifizierung in der Webanwendung nutzen wir die clientseitige Firebasebibliothek, welche z.B. Funktionen wie Login und Passwort zurücksetzen anbietet. Dabei erstellen wir uns einen Eintrag im Local Storage, wenn der Nutzer eingeloggt ist, um diesen eingeloggt zu lassen, sollte die Seite neu geladen werden. Der Nutzer wird dabei automatisch ausgeloggt, sollte das Token der Firebase auslaufen und somit kann der Nutzer nicht dauerhaft eingeloggt bleiben.
+Für die Nutzerauthentifizierung in der Webanwendung nutzen wir die clientseitige Firebasebibliothek, welche z.B. Funktionen wie Login und Passwort zurücksetzen anbietet. Dabei erstellen wir uns einen Eintrag im Local Storage, wenn der Nutzer eingeloggt ist, um diesen eingeloggt zu lassen, sollte die Seite neu geladen werden. Der Nutzer wird dabei automatisch ausgeloggt, sollte das Token der Firebase auslaufen und somit kann der Nutzer nicht dauerhaft eingeloggt bleiben. Für die Nutzung von Firebase innerhalb von Angular nutzen wir die folgende Bibliothek.
 
 - [@angular/fire](https://www.npmjs.com/package/@angular/fire)
 
+Dabei handelt es sich um eine clientseitige Realisierung der Firebase. Diese muss wie die Admin Variante ebenfalls mit dem Firebase Server registriert werden. Dafür werden eine Verbindungsinformationen benötigt. Sobald die Verbindung registriert wurde, kann wie bei der Admin Variante auch auf Funktionen zugegriffen werden. Das nachfolgende Snippet zeigt eine beispielhafte Initialsierung innerhalb von Angular sowie das Anmelden eines Nutzers.
+
+![CodeSnippet - Firebase Client](img/code/angular_firebase.png)
+
+
+
 #### Dokumentendetail Anzeige
 
-Der Hauptfokus der Anwendung ist die Dokumentenverwaltung. Im Rahmen dieser, kann man sich von allen Dokumenten in der Liste eine Detailansicht anzeigen lassen. Diese bietet eine Dreiteilung der Ansicht mit Hilfe einer Tableiste. Im ersten Tab wird dabei das hochgeladene Bild oder die hochgeladene PDF als original Datei angezeigt. Der zweite Tab stellt eine Volltextvorschau des Dokumententextes dar und der dritte Tab stellt die generierte PDF nach der OCR Analyse mit Hilfe eines PDF Viewers da. Dafür werden die anzuzeigenden PDFs als eingebetteter Viewer angezeigt, welcher auch Funktionalitäten wie z.B. die Suche anbietet.
+Der Hauptfokus der Anwendung ist die Dokumentenverwaltung. Im Rahmen dieser, kann man sich von allen Dokumenten in der Liste eine Detailansicht anzeigen lassen. Diese bietet eine Dreiteilung der Ansicht mit Hilfe einer Tableiste. Im ersten Tab wird dabei das hochgeladene Bild oder die hochgeladene PDF als original Datei angezeigt. Der zweite Tab stellt eine Volltextvorschau des Dokumententextes dar und der dritte Tab stellt die generierte PDF nach der OCR Analyse mit Hilfe eines PDF Viewers da. Dafür werden die anzuzeigenden PDFs als eingebetteter Viewer angezeigt, welcher auch Funktionalitäten wie z.B. die Suche anbietet. Der nachfolgende Screenshot zeigt eine Darstellung der Detailansicht eines Dokumentes:
+
+![]()
+
+Für die Darstellung des nutzen wir folgende Bibliothek.
 
 - [ng2-pdfjs-viewer](https://www.npmjs.com/package/ng2-pdfjs-viewer)
+
+Die Nutzung einer Library im Gegenteil zur Einbettung des PDFs mit Hilfe von HTML5 hat den Vorteil, dass wir Zugriff auf eine Suchfunktion, eine ausklappbare Seitenleiste sowie weitere Funktionen haben, welche die HTML5 PDF nicht bietet. Um ein PDF anzeigen zu können wird in der HTML Datei ein Eintrag für den Viewer angezeigt und eine ID zugewiesen. Mit Hilfe dieser Id kann das DOM Element im Angular Komponenten mittels ViewChild eingebunden und verwendet werden. Sobald die Detailansicht für ein Dokument geöffnet wird, wird die PDF Datei vom Server abgefragt und als Base64 String zurückgeliefert. Dieser kann zu Blob formatiert werden und in das DOM Element geladen werden. Dieser Vorgang ist im folgenden Code Snippet zu sehen:
+
+![CodeSnippet](img/code/angular_pdfViewer.png)
 
 #### Klassifizierung mit Kategorien
 

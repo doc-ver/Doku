@@ -281,28 +281,54 @@ class: middle, center
 - Dabei rufen die Routen direkt die Funktion des Datenbank Controllers von Sequelize auf
 ---
 ## Nextcloud Adapter
-.center[<img src="img/code/node_nextcloud.png" width="100%">]
+.center[<img src="img/nextcloud_screen.jpg" width="100%" style="margin-top: 30px">]
+
+???
+- Um Dateien abzulegen nutzen wir Nextcloud
+- In der DB wird nur der Pfad zu den Dokumenten gespeichert
+- Dabei gibt einen ordner userfiles und dann für jeden Nutzer einen Unterordner
+---
+## Nextcloud Adapter
+.center[<img src="img/code/node_nextcloud.png" width="100%" >]
 
 ???
 - Für die Anbindung an die Nextcloud verwendet wir das modul nextcloud-node-client
 - Mit diesem ist es sehr einfach eine Verbindung zur Nextcloud herzustellen
 - Dieses Snippet zeigt das laden einer Datei aus der Nextcloud mit einem Pfad
 ---
+
 ## Firebase Adapter
-.center[<img src="img/code/node_firebase.png" width="100%">]
+.center[<img src="img/firebase_screen_admin.jpg" width="100%">]
 
 ???
 
 - Bei der Firebase wird grundsätzlich die Verwendung zwischen Admin und Client Bibliothek unterschieden
 - Admin hat Funktionen wie verifyUser, registerUser
 - Client hat Funktionen wie LoginUser, sendPasswordReset 
+- Die Verwendung der Admin Bibliothek benötigt ein Dienstkonto und einen privaten Schlüssel (Form einer JSON Datei)
 - Für die Verwendung der Firebase nutzen wir eine Admin Library im Backend und eine Client Library im Frontend (zu Client sag ich gleich nochmal was genauer)
+---
+## Firebase Adapter
+.center[<img src="img/code/node_firebase.png" width="100%">]
+
+???
+
 - Um das Admin SDK zu nutzen wird die Lib firebase-admin benötigt
 - Diese wird mit dem Dienstaccount (Json Datei) registriert &rarr; Zugänglich im Firebase Account
 - Anschließend können auf das auth() Objekt Funktionen aufgerufen werden
 - Dieses Beispiel zeigt die Nutzerregistrierung
 ---
-## Angular - Design
+
+## Firebase Adapter
+.center[<img src="img/firebase_screen.jpg" width="100%" style="margin-top: 50px">]
+
+???
+
+- Nach der Registrierung von Nutzern können diese auch in der Firebase Konsole eingesehen werden
+- Darstellung mit Email, UID und Last Login
+- Können manuell aktiviert, deaktiviert sowie gelöscht werden
+---
+## Angular - Design und Routing
 
 - Navigationsleiste Top Fixed &rarr; Navigation Component
 - Komponenten werden in den Content gerendert
@@ -335,14 +361,22 @@ class: middle, center
 - Auf dieses kann man die Funktionen aufrufen
 ---
 ## Angular - PDF Viewer
+
+
+???
+
+- In der Detailansicht der Dokumente kann man sich die generierte Datei mit einem PDF Viewer ansehen 
+- Haben eine Library verwendet da die HTML5 Embed Funktion von PDFs keine Suchfunktion hat 
+- Detailansicht besteht aus Metadaten und 3 Tabs &rarr; Tabs erläutern
+---
+## Angular - PDF Viewer
 .center[<img src="img/code/angular_pdfViewer.png" width="100%">]
 
 ???
 
 - Bei dem PDF Viewer haben wir die Bibliothek ng2-pdfjs-viewer verwendet
-- Dafür haben wir uns entschieden da die HTML5 Embed Funktion von PDFs keine Suchfunktion hat 
-- Bei dieser Bibliothek kann man dem HTML objekt einfach mit der # eine ID geben
-- Diese kann der Komponent als ViewChild implementieren
+- Bei dieser Bib erstellt man in der HTML Seite DOM Element mit ID
+- Diese ID kann der Komponent als ViewChild implementieren
 - Dadurch kann dieser auf das DOM Element zugreifen und die PDFSource setzen
 - In diesem Beispiel wird die PDF vom Server abgerufen, zu Blob Format umgewandelt und in die Property "pdfSrc" gesetzt
 ---
