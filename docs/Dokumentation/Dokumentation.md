@@ -1,4 +1,4 @@
-﻿
+
 # DocVer Dokumentation
 
 **Modul:** Datenbankanwendungen
@@ -178,7 +178,13 @@ Auf Grund von langanhaltender Probleme mit dem Service Workers in Verbindung mit
 - Jeder Nutzer hat die Möglichkeit eigene Kategorien anzulegen
 
 ### OCR Analyse
-- Ausführliche Stichpunkte formulieren (Ken)
+- Eingabedokumente werden für die Texterkennung optimiert
+- Optimierte Dokumente werden auf mögliche Wörter untersucht
+- Gefundene Wörter werden mit Positions- und Kontextangaben zwischengespeichert
+- Neue PDF mit durchsuchbarem Text wird erzeugt
+  - Eingabedokumente als Hintergrund
+  - Erkannte Wörter werden als transparentes Overlay über dem Original gespeichert
+- Erkannte Wörter werden einzeln für eine spätere Serverseitige Dokumentensuche in einer Datenbank gespeichert
 
 
 
@@ -186,16 +192,27 @@ Auf Grund von langanhaltender Probleme mit dem Service Workers in Verbindung mit
 
 ### Docker als Environment
 
-- Deployment Übersicht
-  - Welche Container?
-  - Wie deployed?
-(Ken)
+![Docker](img/docker_architecture.png)
 
-### OCR Analyse 
+Der Gesamte Softwarestack aus diesem Projekt läuft auf einer Dockerinstanz. Bei der Wahl von Containerlösungen muss immer ein Kompromiss zwischen Sicherheit, Komfort und Geschwindigkeit getroffen werden. In diesem Projekt wurde versucht den bekannten Komfort und die Geschwindigkeit sowohl beim Ausrollen der Software, als auch in ihrem Betrieb weiterhin zu nutzen. Trotzdem wurde versucht diese weiter voneinander zu Isolieren, wie es bei virtuellen Maschinen der Fall ist, damit im Fall einer Kompromitierung eines Containers den Schaden so gering wie möglich zu halten. Für die Umsetzung wurden bekannte SELinux Erweiterungen sowohl auf Datei- als auch auf Netzwerkebene implementiert. Das Ziel ist dabei gewesen, die Sicherheit ein wenig zu optimieren, ohne die Benutzung der Dockerinstanz selber dabei zu beeinträchtigen.
 
-- Genauere Erklärung zur Umsetzung
-- Welche OCR Lib
-(Ken)
+Der mit Abstand größte Container hinsichtlich des benötigten Arbeits- und Massenspeicher ist die Oracle Datenbank in Version 19.3. Für die Installation wurde ein dafür angefertiges Skript verwendet, woduch die Installation der Datenbank automatisiert wurde und entsprechende Benutzer, Tablespaces und Berechtigungen angelegt wurden.
+
+Zum Speichern der in diesem Projekt anfallenden Daten haben wir uns entschieden, ein dafür geeignetes System einzusetzen, anstatt eine eigene Lösung zu implementieren. Dafür haben wir eine Nextcloudinstanz verwendet, natürlich auch als Containerlösung. Für die tatsächliche Datenablage wurde intern ein gewöhnliches EXT4 Dateisystem verwendet. Alternativ hätte sowohl zu Beginn des Projekts, als auch in Zukunft ein externer Objekt- oder Blockspeicher eingebunden werden. Möglich ist es durch die von uns verwendete WebDav Schnittstelle von Nextcloud. So überlassen wir einem Service der hervoragend mit Daten umgehen kann, auch das Speichern dieser.
+
+Neben der Oracle Datenbank und dem Nextcloudserver läuft noch ein OCR Analyseserver, das Frontend und das Backend als Containerinstanz auf dem Server.
+
+### OCR Analyse
+
+Beim der OCR (Optical Character Recognition) wird versucht, aus einem gegebenen Bild so viele Zeichen wie möglich zu extrahieren. Dafür exestieren verschiedene Verfahren, die unterschiedlich zuverlässig arbeiten und auch unterschiedlich viel kosten. Die Zeichenerkennung von Abbyy beispielsweise fängt bei ca. 100€ an und kostet mehr, jenachdem ob eine Server- oder Mehrbenutzerlizenz benötigt wird. Ähnlich wie bei den Preismodellen bei Oracle muss bei den Serverversionen für jeden Kern eines Prozessors eine einzelne Lizenz erworben werden. Eine andere Option ist das verwenden von freier Software. In diesem Projekt haben wir Tesseract für die Teichen- bzw. Wörtererkennung verwendet. In ersten Tests hat sich gezueigt, dass die reine Texterkennung nicht zufriedenstellend funktioniert. Deswegen werden von unserer Software alle Eingabedokumente für eine spätere Analyse optimiert. Das geschieht in 6 Schritten und wurde mit OpenCV umgesetzt.
+
+![Docker](img/ocr_preprocessing.png)
+
+In der oberen Grafik ist im ersten Ausschnitt das originale Dokument zu erkennen. Die Optimierung verringert die Farben auf Graustufen, wie im zweiten Ausschnitt zu sehen ist. Auch hier ist die Texterkennung noch nicht sehr gut, da um die Buchstaben herum noch ein klares Rauschen zu sehen ist. Im dritten Ausschnitt wurde das Rauschen entfernt, wobei auch die Buchstaben selber leicht beschädigt wurden. der vierte Schritt verbessert den Kontrast und versucht die Ursprünglichen Buchstaben wiederherzustellen. Wie gut zu erkennen ist, werden vom Wort *Schlüssel* die Punkte vom *Ü* entfernt. Solche Fehler passieren ab und zu und führen zu einer Falscherkennung einzelner Buchstaben. Da durch diese Verfahren jedoch die Gesamterkennungsrate der meisten Buchstaben deutlich verbessert wird, werden diese Einschränkungen akzeptiert. Im fünften Schritt werden die Buchstaben nicht vergrößert, aber fett errechnet. Das ist für den letzten Schritt notwendig, da sonst Buchstaben verloren gehen können. Hier werden ausschließlich die Kanten der Buchstaben benötigt.
+
+Nach der Texterkennung der einzelnen Wörter wird eine Prozedur in der Datenbank aufgerufen, die den Volltext des Dokuments erwartet. Intern wird dieser wieder in seine einzelnen Wörter unterteilt und anschließend für eine Spätere Volltextsuche gespeichert.
+
+Zum Schluss wird eine finale PDF erstellt. Diese enthällt das Bild im Hintergrund und den erkannten Text in einem Overlay darüber. So kann im Hintergrund ein Wort mit einem PDF Reader markiert werden, wodurch tatsächlich das Wort im Overlay ausgewählt wird.
 
 ### Nextcloud
 
@@ -203,8 +220,17 @@ Ein selbst gehosteter Nextcloud Server wird bei diesem Projekt als Webspeicher f
 
 ### Oracle Datenbank
 
-- Genauere Erklärung zur Umsetzung mit Tablespaces, Nutzer, Stored Procedures etc.
-(Ken)
+![Docker](img/db_fulltext.png)
+
+Die Funktion F_DOC_GET_FULLTEXT erwartet die ID eines Dokuments und gibt seinen Volltext zurück.
+
+![Docker](img/db_keywords.png)
+
+Die Funktion D_DOC_SEARCH_BY_KEYWORDS erwartet eine Benutzer ID, die Wörter nach denen gesucht werden soll und die minimale Anzahl an Treffern, die das gesuchte Dokument mindestens aus diesen Keywords haben soll. Dabei ist diese Suche anders wie bei den Standardsuchmaschinen: Jedes weitere Keyword erweitert nicht die Suche nach weiteren Dokumenten, sondern schränkt diese weiter ein. Dadurch können die meisten Dokumente mit drei bis vier Keywords gefunden werden. Beispiel: **Rechnung Telekom Juni 2020**.
+
+![Docker](img/db_analysed.png)
+
+Mit der Funktion F_DOC_STORE_ANALYZED kann der Volltext zu bereits vorhandenen Dokumenten ergänzt werden. Diese Funktion wird nur vom OCR Analyseserver aufgerufen. Als Eingabewert wird die Dokumenten ID, der Pfad in der Nextcloud zum OCR_PDF und der Volltext erwartet. Intern wird versucht kein Wort doppelt zu speichern. So kann später über die Volltextsuche später das Dokument effizient gefunden werden, das gespeicherte Wort selber hat einen eigenen Index.
 
 ### Node JS
 
