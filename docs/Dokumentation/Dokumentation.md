@@ -305,7 +305,7 @@ Dabei handelt es sich um eine clientseitige Realisierung der Firebase. Diese mus
 
 Der Hauptfokus der Anwendung ist die Dokumentenverwaltung. Im Rahmen dieser, kann man sich von allen Dokumenten in der Liste eine Detailansicht anzeigen lassen. Diese bietet eine Dreiteilung der Ansicht mit Hilfe einer Tableiste. Im ersten Tab wird dabei das hochgeladene Bild oder die hochgeladene PDF als original Datei angezeigt. Der zweite Tab stellt eine Volltextvorschau des Dokumententextes dar und der dritte Tab stellt die generierte PDF nach der OCR Analyse mit Hilfe eines PDF Viewers da. Dafür werden die anzuzeigenden PDFs als eingebetteter Viewer angezeigt, welcher auch Funktionalitäten wie z.B. die Suche anbietet. Der nachfolgende Screenshot zeigt eine Darstellung der Detailansicht eines Dokumentes:
 
-![]()
+![](img/pdfviewer_screen.JPG)
 
 Für die Darstellung des nutzen wir folgende Bibliothek.
 
